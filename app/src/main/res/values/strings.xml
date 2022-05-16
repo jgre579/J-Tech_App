@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">J-Tech</string>
+    <string name="Phones_text">Phones</string>"
+    <string name="Tablets_text">Tablets</string>"
+    <string name="Laptops_text">Laptops</string>"
+
 </resources>
