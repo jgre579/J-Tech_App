@@ -10,4 +10,5 @@
     <color name="white_50a">#80FFFFFF</color>
     <color name="blue_900">#0D47A1</color>
     <color name="off_black">#263238</color>
+    <color name="gray_out">#bebebe</color>
 </resources>

@@ -35,18 +35,18 @@ public class DataProvider {
     // private static List<Device> topPicks;
 
 
-    public static ArrayList<Device> generateDevice() {
-
-        ArrayList<Device> topPicks = new ArrayList<Device>();
-        for (int i = 0; i < titles.length; i++) {
-            topPicks.add(new Device(titles[i],category[i],price[i], image[i],year[i],
-                    performance[i],screen_size[i],storage[i],camera[i],description[i],
-                    top_picks[i]));
-            //topPicks.add(new Device("iPhone 13 Max", R.drawable.phone_category));
-        }
-
-        return topPicks;
-    }
+//    public static ArrayList<Device> generateDevice() {
+//
+////        ArrayList<Device> topPicks = new ArrayList<Device>();
+////        for (int i = 0; i < titles.length; i++) {
+////            topPicks.add(new Device(titles[i],category[i],price[i], image[i],year[i],
+////                    performance[i],screen_size[i],storage[i],camera[i],description[i],
+////                    top_picks[i]));
+////            //topPicks.add(new Device("iPhone 13 Max", R.drawable.phone_category));
+////        }
+////
+////        return topPicks;
+//    }
 
     public static ArrayList<Device> generateTopPicks() {
 

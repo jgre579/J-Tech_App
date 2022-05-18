@@ -38,9 +38,9 @@ public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        LayoutInflater inflator = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
 
-        View topPickItemView = inflator.inflate(R.layout.top_picks_item, parent, false);
+        View topPickItemView = inflater.inflate(R.layout.top_picks_item, parent, false);
 
         ViewHolder vh = new ViewHolder(topPickItemView);
         return vh;

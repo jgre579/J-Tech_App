@@ -7,7 +7,7 @@ public class Device {
 // performance[i],screen_size[i],storage[i],camera[i],description[i],
 // top_picks[i]);
     private String titles;
-    private String imageSrc;
+    private int imageSrc;
     private String name;
     private String price;
     private String image;
@@ -20,7 +20,7 @@ public class Device {
     private String top_picks;
 
     //for detail page
-    public Device(String name, String imageSrc, String titles, String price,
+    public Device(String name, int imageSrc, String titles, String price,
                   String image, String year, String performance,
                   String screen_size, String storage, String camera,
                   String description, String top_picks){
@@ -38,11 +38,16 @@ public class Device {
         this.top_picks = top_picks;
     }
 
+    public Device(String name, int imageSrc) {
+        this.imageSrc = imageSrc;
+        this.name = name;
+    }
+
     public String getName(){
         return name;
     }
 
-    public String getImageSrc() {
+    public int getImageSrc() {
         return imageSrc;
     }
 
