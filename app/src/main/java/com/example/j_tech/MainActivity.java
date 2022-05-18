@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,13 +24,24 @@ public class MainActivity extends AppCompatActivity {
     class MainViewHolder {
 
         TextView devicesTextView;
+        EditText searchEditText;
 
         public MainViewHolder(){
 
             devicesTextView = findViewById(R.id.devices_text_view);
-
+            searchEditText = findViewById(R.id.search_text_input);
+            searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    boolean handled = false;
+                    if(actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        devicesTextView.setText(searchEditText.getText());
+                        handled = true;
+                    }
+                    return handled;
+                }
+            });
         }
-
         public String getCategoryText(View view) {
 
             MaterialCardView cardView = (MaterialCardView) view;
@@ -37,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
             return (String) textView.getText();
 
         }
-
-
-
-
     }
 
 
@@ -72,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void upaa
 
 
 }

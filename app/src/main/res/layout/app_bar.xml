@@ -28,6 +28,7 @@
                 android:inputType="text"
                 android:hint="Search"
                 android:background="@null"
+                android:imeOptions="actionSearch"
 
                 />
         </com.google.android.material.appbar.MaterialToolbar>
