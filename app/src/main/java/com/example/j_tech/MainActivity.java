@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,13 +22,14 @@ import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     MainViewHolder vh;
     int imageNum = 3;
-    int activeDot = 0;
+    int activeDot = -1;
     class MainViewHolder {
 
         TextView devicesTextView;
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView topPicksRV;
         LinearLayout dotsLayout;
         ArrayList<ImageView> dots;
+        ImageView currentTopPickView;
+        int currentTopPickPosition;
 
         public MainViewHolder(){
 
@@ -58,17 +60,32 @@ public class MainActivity extends AppCompatActivity {
             topPicksRV = (RecyclerView) findViewById(R.id.top_picks_recycler_view);
             dots = new ArrayList<ImageView>();
 
+
             topPicksRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
                     LinearLayoutManager layoutManager = (LinearLayoutManager) topPicksRV.getLayoutManager();
-                    int position = layoutManager.findFirstVisibleItemPosition();
-                    setImageDot(position);
+                    currentTopPickPosition = layoutManager.findFirstVisibleItemPosition();
+                    //LinearLayout layout = (LinearLayout) layoutManager.findViewByPosition(currentTopPickPosition);
+                    //currentTopPickView = (ImageView) layout.getChildAt(0);
+
+                    setImageDot(currentTopPickPosition);
+                    currentTopPickView = findViewById(R.id.top_pick_image);
+                    initCurrentImageView();
+                    Log.d("click", currentTopPickView.toString());
+
 
 
                 }
             });
+
+
+
+
+
+
+
 
 
         }
@@ -80,6 +97,22 @@ public class MainActivity extends AppCompatActivity {
 
             return (String) textView.getText();
 
+        }
+        public void initCurrentImageView() {
+            currentTopPickView.setClickable(true);
+            currentTopPickView.setFocusable(true);
+            Log.d("click", "Listner run");
+            Log.d("click", currentTopPickView.getDrawable().toString());
+            currentTopPickView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent detailsActivity = new Intent(getBaseContext(), DetailsActivity.class);
+                    detailsActivity.putExtra("Device",  (Serializable) getTopPickByPosition(currentTopPickPosition));
+                    startActivity(detailsActivity);
+                    Log.d("click", "CLIKED");
+                }
+            });
         }
     }
 
@@ -95,6 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
         initTopPicks();
         initImageDots();
+    }
+
+    public Device getTopPickByPosition(int position){
+
+        return topPicks.get(position);
+
     }
 
     public void setImageDot(int position){
@@ -161,7 +200,10 @@ public class MainActivity extends AppCompatActivity {
         vh.devicesTextView.setText(vh.getCategoryText(view));
 
 
+
     }
+
+
 
     public void updateTopPicks() {
 

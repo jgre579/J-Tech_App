@@ -2,10 +2,11 @@ package com.example.j_tech;
 
 import android.graphics.drawable.Drawable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Device {
+public class Device implements Serializable {
 
 
 

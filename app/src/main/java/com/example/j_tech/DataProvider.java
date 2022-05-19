@@ -20,7 +20,8 @@ public class DataProvider {
 
     }
 
-
+    // You can get a list of the devices by supplying an instance of the object,
+    // Either Phone, Tablet, or Laptop.
     public static ArrayList<Device> getDevices(Device d) {
 
         if(devices.isEmpty()) {
@@ -38,6 +39,20 @@ public class DataProvider {
         }
 
         return sortedDevice;
+
+    }
+
+    public static Device getDevice(String name) {
+
+        for (Device device : devices) {
+            if(device.getName().equals(name)) {
+
+                return device;
+
+            }
+        }
+
+        return null;
 
     }
 
