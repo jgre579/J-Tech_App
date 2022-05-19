@@ -19,7 +19,7 @@ public class Device {
     private int year;
     private int topPickScore;
 
-    private Device(String name, ArrayList<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, String description, int year) {
+    public Device(String name, ArrayList<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, String description, int year) {
 
         this.name = name;
         this.imageSrcs = imageSrcs;
@@ -30,6 +30,15 @@ public class Device {
         this.description = description;
         this.year = year;
         topPickScore = 0;
+
+    }
+
+    //Temporary Constructor for Toppicks testing
+    public Device(String name, int imageSrc){
+        this.name = name;
+        this.imageSrcs = new ArrayList<Integer>();
+        this.imageSrcs.add(imageSrc);
+
 
     }
 

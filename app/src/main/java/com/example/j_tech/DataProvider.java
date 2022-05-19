@@ -44,14 +44,20 @@ public class DataProvider {
 
     public static ArrayList<Device> generateTopPicks() {
 
+        if(devices.isEmpty()) {
+            generateDevices();
+        }
+
         Collections.sort(devices, new Comparator<Device>() {
             @Override
             public int compare(Device o1, Device o2) {
                 return o1.getTopPickScore() - o2.getTopPickScore();
             }
         });
+
+        ArrayList<Device> topPicks = new ArrayList<Device>(devices.subList(0,3));
         
-        return devices;
+        return topPicks;
 
     }
 }
