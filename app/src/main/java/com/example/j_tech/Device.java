@@ -2,73 +2,74 @@ package com.example.j_tech;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Device {
-// topPicks.add(new Device(titles[i],price[i], image[i],year[i],
-// performance[i],screen_size[i],storage[i],camera[i],description[i],
-// top_picks[i]);
-    private String titles;
-    private int imageSrc;
+
+
+
+    private ArrayList<Integer> imageSrcs;
     private String name;
-    private String price;
-    private String image;
-    private String year;
-    private String performance;
-    private String screen_size;
-    private String storage;
-    private String camera;
+    private Map<String, String> specs;
+    private float price;
+    private String moreInfoLink;
+    private int brandImageSrc;
     private String description;
-    private String top_picks;
+    private int year;
+    private int topPickScore;
 
-    //for detail page
-    public Device(String name, int imageSrc, String titles, String price,
-                  String image, String year, String performance,
-                  String screen_size, String storage, String camera,
-                  String description, String top_picks){
-        this.imageSrc = imageSrc;
+    private Device(String name, ArrayList<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, String description, int year) {
+
         this.name = name;
-        this.titles = titles;
+        this.imageSrcs = imageSrcs;
+        this.specs = specs;
         this.price = price;
-        this.image = image;
-        this.year = year;
-        this.performance = performance;
-        this.screen_size = screen_size;
-        this.storage = storage;
-        this.camera = camera;
+        this.moreInfoLink = moreInfoLink;
+        this.brandImageSrc = brandImageSrc;
         this.description = description;
-        this.top_picks = top_picks;
+        this.year = year;
+        topPickScore = 0;
+
     }
 
-    public Device(String name, int imageSrc) {
-        this.imageSrc = imageSrc;
-        this.name = name;
+    public void incrementPickScore(){
+        topPickScore+=1;
     }
 
-    public String getName(){
+    public int getTopPickScore(){
+        return topPickScore;
+    }
+
+    public ArrayList<Integer> getImageSrcs() {
+        return imageSrcs;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public int getImageSrc() {
-        return imageSrc;
+    public Map<String, String> getSpecs() {
+        return specs;
     }
 
-    public String getTitles(){return titles;}
+    public float getPrice() {
+        return price;
+    }
 
-    public String getPrice(){return price;}
+    public String getMoreInfoLink() {
+        return moreInfoLink;
+    }
 
-    public String getImage(){return image;}
+    public int getBrandImageSrc() {
+        return brandImageSrc;
+    }
 
-    public String getYear(){return titles;}
+    public String getDescription() {
+        return description;
+    }
 
-    public String getPerformance(){return titles;}
-
-    public String getScreen_size(){return titles;}
-
-    public String getStorage(){return titles;}
-
-    public String getCamera(){return titles;}
-
-    public String getDescription(){return titles;}
-
-    public String getTop_picks(){return titles;}
-
+    public int getYear() {
+        return year;
+    }
 }

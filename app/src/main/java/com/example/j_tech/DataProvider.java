@@ -1,62 +1,57 @@
 package com.example.j_tech;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class DataProvider {
-    static String[] titles ={"iPhone 12", "iPhone 12 Pro", "iPhone 12 Pro Max"};
-    static String[] category = {
-            "Phone","Laptop","Tablet"
-    };
-    static String[] price = {};
-    static String[] image = {"url1","url2"};
-    static String[] year = {"2021","2022"};
-    static String[] performance = {"sim_description 1","sim_description 2"};
-    static String[] screen_size ={};
-    static String[] storage ={};
-    static String[] camera ={};
-    static String[] description = {"description 1", "description 2"};
-    static ArrayList<Device> topPicks1 = generateTopPicks();
 
-    //user views
-    static String[] top_picks = {
-            "100","30"
-    };
-    //tags
-    static String[] key_word = {};
-   //private static List<Device> devices;
-    // private static List<Device> topPicks;
+    private static ArrayList<Device> devices = new ArrayList<Device>();
+
+    public static void generateDevices() {
+
+        devices.add(new Phone("iPhone 13 Max", R.drawable.phone_category));
+        devices.add(new Phone("iPhone 12 Mini", R.drawable.phone_category));
+        devices.add(new Tablet("iPad Pro", R.drawable.tablet_category));
+        devices.add(new Tablet("Galaxy Tab 3", R.drawable.tablet_category));
+        devices.add(new Laptop("Macbook pro", R.drawable.laptop_category));
+        devices.add(new Laptop("Lenovo Thinkpad", R.drawable.laptop_category));
+
+    }
 
 
-//    public static ArrayList<Device> generateDevice() {
-//
-////        ArrayList<Device> topPicks = new ArrayList<Device>();
-////        for (int i = 0; i < titles.length; i++) {
-////            topPicks.add(new Device(titles[i],category[i],price[i], image[i],year[i],
-////                    performance[i],screen_size[i],storage[i],camera[i],description[i],
-////                    top_picks[i]));
-////            //topPicks.add(new Device("iPhone 13 Max", R.drawable.phone_category));
-////        }
-////
-////        return topPicks;
-//    }
+    public static ArrayList<Device> getDevices(Device d) {
+
+        if(devices.isEmpty()) {
+            generateDevices();
+        }
+
+        ArrayList<Device> sortedDevice = new ArrayList<Device>();
+
+        for (Device device : devices) {
+            if(device.getClass().isInstance(d)) {
+
+                sortedDevice.add(device);
+
+            }
+        }
+
+        return sortedDevice;
+
+    }
+
 
     public static ArrayList<Device> generateTopPicks() {
 
-        ArrayList<Device> topPicks = new ArrayList<Device>();
-
-        for (int i = 0; i < 2; i++) {
-            topPicks.add(new Device("iPhone 13 Max", R.drawable.phone_category));
-        }
-
-        return topPicks;
+        Collections.sort(devices, new Comparator<Device>() {
+            @Override
+            public int compare(Device o1, Device o2) {
+                return o1.getTopPickScore() - o2.getTopPickScore();
+            }
+        });
+        
+        return devices;
 
     }
 }
