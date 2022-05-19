@@ -1,9 +1,12 @@
 package com.example.j_tech;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.os.Bundle;
 import android.text.Layout;
@@ -25,7 +28,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     MainViewHolder vh;
-
+    int imageNum = 3;
+    int activeDot = 0;
     class MainViewHolder {
 
         TextView devicesTextView;
@@ -54,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
             topPicksRV = (RecyclerView) findViewById(R.id.top_picks_recycler_view);
             dots = new ArrayList<ImageView>();
 
+            topPicksRV.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) topPicksRV.getLayoutManager();
+                    int position = layoutManager.findFirstVisibleItemPosition();
+                    setImageDot(position);
+
+
+                }
+            });
+
 
         }
         public String getCategoryText(View view) {
@@ -81,8 +97,26 @@ public class MainActivity extends AppCompatActivity {
         initImageDots();
     }
 
+    public void setImageDot(int position){
+        // Ensure that the dots arent being redrawn unnecessarily.
+        if(activeDot != position){
+
+            clearImageDots();
+            vh.dots.get(position).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
+            activeDot = position;
+
+        }
+
+    }
+
+    public void clearImageDots(){
+        for (int i = 0; i < imageNum; i++) {
+            vh.dots.get(i).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_not_active));
+        }
+    }
+
     public void initImageDots() {
-        int imageNum = 3;
+
         for (int i = 0; i < imageNum; i++) {
             ImageView imageView = new ImageView(this);
             imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_not_active));
@@ -93,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             vh.dots.add(imageView);
         }
         setDotsLayoutMargins();
-        vh.dots.get(0).setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.dot_active));
+        setImageDot(0);
     }
 
     public void setDotsLayoutMargins(){
@@ -101,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
-        Log.d("TAG", String.valueOf(width));
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.rightMargin = width/3;
         params.leftMargin = width/3;
@@ -119,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         vh.topPicksRV.setLayoutManager(layoutManager);
+        SnapHelper helper = new LinearSnapHelper();
+        helper.attachToRecyclerView(vh.topPicksRV);
 
     }
 

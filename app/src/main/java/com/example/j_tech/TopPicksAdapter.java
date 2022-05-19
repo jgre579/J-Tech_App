@@ -1,6 +1,7 @@
 package com.example.j_tech;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,10 @@ public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHo
 
     private List<Device> topPicks;
 
+
     public TopPicksAdapter(List<Device> topPicks){
         this.topPicks = topPicks;
+
     }
 
     @NonNull
@@ -50,11 +53,14 @@ public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Device pick = topPicks.get(position);
         ImageView imageView = holder.imageView;
-        imageView.setImageResource(pick.getImageSrc());
+        imageView.setImageResource(pick.getImageSrcs().get(0));
+        Log.d("TAG3", String.valueOf(position));
     }
 
     @Override
     public int getItemCount() {
         return topPicks.size();
     }
+
+
 }
