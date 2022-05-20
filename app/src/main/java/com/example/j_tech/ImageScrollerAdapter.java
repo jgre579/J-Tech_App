@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHolder> {
+public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -22,19 +21,25 @@ public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHo
         public ViewHolder(View v){
 
             super(v);
-            imageView = (ImageView) v.findViewById(R.id.top_pick_image);
+            imageView = (ImageView) v.findViewById(R.id.scroller_image);
 
         }
 
 
     }
 
-    private List<Device> topPicks;
+    ViewHolder vh;
+
+    private List<Integer> images;
 
 
-    public TopPicksAdapter(List<Device> topPicks){
-        this.topPicks = topPicks;
+    public ImageScrollerAdapter(List<Integer> images){
+        this.images = images;
 
+    }
+
+    public ImageView getImageView(){
+        return vh.imageView;
     }
 
     @NonNull
@@ -43,23 +48,23 @@ public class TopPicksAdapter extends RecyclerView.Adapter<TopPicksAdapter.ViewHo
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View topPickItemView = inflater.inflate(R.layout.top_picks_item, parent, false);
+        View topPickItemView = inflater.inflate(R.layout.image_scroller_item, parent, false);
 
-        ViewHolder vh = new ViewHolder(topPickItemView);
+        vh = new ViewHolder(topPickItemView);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Device pick = topPicks.get(position);
+        //Integer pick = images.get(position);
         ImageView imageView = holder.imageView;
-        imageView.setImageResource(pick.getImageSrcs().get(0));
+        imageView.setImageResource(images.get(position));
         Log.d("TAG3", String.valueOf(position));
     }
 
     @Override
     public int getItemCount() {
-        return topPicks.size();
+        return images.size();
     }
 
 

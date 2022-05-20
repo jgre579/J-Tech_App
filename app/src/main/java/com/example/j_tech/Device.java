@@ -40,7 +40,11 @@ public class Device implements Serializable {
         this.imageSrcs = new ArrayList<Integer>();
         this.imageSrcs.add(imageSrc);
 
+    }
 
+    public Device(String name,  ArrayList<Integer> imageSrcs) {
+        this.name = name;
+        this.imageSrcs = imageSrcs;
     }
 
     public void incrementPickScore(){
