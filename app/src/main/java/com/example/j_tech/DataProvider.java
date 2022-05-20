@@ -11,8 +11,8 @@ public class DataProvider {
     private static ArrayList<Device> devices = new ArrayList<Device>();
 
     public static void generateDevices() {
-        ArrayList<Integer> images = new ArrayList<Integer>(Arrays.asList(
-                R.drawable.laptop_category,R.drawable.tablet_category,R.drawable.tablet_category));
+        ArrayList<Integer> images = new ArrayList<>(Arrays.asList(
+                R.drawable.laptop_category, R.drawable.tablet_category, R.drawable.tablet_category));
 
         devices.add(new Phone("iPhone Test 12", images));
 

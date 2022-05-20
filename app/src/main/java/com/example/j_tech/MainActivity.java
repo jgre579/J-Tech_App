@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    ImageScroller imageScroller;
+    ImageScroller imageScroller, two;
     ArrayList<Device> topPicks;
 
     @Override
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
        imageScroller = new ImageScroller(images, this, vh.topPicksRV, topPickClickListener);
+
 
 
 

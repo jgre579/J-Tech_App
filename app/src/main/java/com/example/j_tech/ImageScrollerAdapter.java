@@ -59,7 +59,7 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
         //Integer pick = images.get(position);
         ImageView imageView = holder.imageView;
         imageView.setImageResource(images.get(position));
-        Log.d("TAG3", String.valueOf(position));
+        Log.d("TAGON", String.valueOf(position));
     }
 
     @Override
