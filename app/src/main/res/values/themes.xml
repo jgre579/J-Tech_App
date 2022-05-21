@@ -40,6 +40,12 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
+    <style name="Title" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/off_black</item>
+    </style>
+
 
 
 

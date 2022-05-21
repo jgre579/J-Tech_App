@@ -26,7 +26,6 @@ public class ImageScroller {
     Context context;
     LinearLayout dotsLayout;
     ArrayList<ImageView> dots;
-    int imageNum = 3;
     int activeDot = -1;
     Activity activity;
     ImageScrollerAdapter adapter;
@@ -89,14 +88,14 @@ public class ImageScroller {
     }
 
     public void clearImageDots(){
-        for (int i = 0; i < imageNum; i++) {
+        for (int i = 0; i < images.size(); i++) {
             dots.get(i).setImageDrawable(ContextCompat.getDrawable(context, R.drawable.dot_not_active));
         }
     }
 
     public void initImageDots() {
 
-        for (int i = 0; i < imageNum; i++) {
+        for (int i = 0; i < images.size(); i++) {
             ImageView imageView = new ImageView(context);
 
             imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.dot_not_active));
