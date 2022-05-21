@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdapter.ViewHolder> {
@@ -36,7 +37,10 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
     public ImageScrollerAdapter(List<Integer> images){
         this.images = images;
 
+
     }
+
+
 
     public ImageView getImageView(){
         return vh.imageView;

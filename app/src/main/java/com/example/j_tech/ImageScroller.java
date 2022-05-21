@@ -31,12 +31,20 @@ public class ImageScroller {
     Activity activity;
     ImageScrollerAdapter adapter;
     View.OnClickListener listener;
-    public ImageScroller(List<Integer> images, Activity activity, RecyclerView rv, View.OnClickListener listener) {
-        this.images = images;
+    public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+        buildImageScroller(images, activity, rv, listener);
+    }
+
+    public ImageScroller(String imagePrefix,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+        buildImageScroller(getImagesFromPrefix(imagePrefix), activity, rv, listener);
+    }
+
+    public void buildImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener){
         this.activity = activity;
         this.context = activity.getApplicationContext();
         this.listener = listener;
-        this.adapter = new ImageScrollerAdapter(images);
+        this.images = images;
+        this.adapter = new ImageScrollerAdapter(this.images);
         rv.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
@@ -64,9 +72,31 @@ public class ImageScroller {
                 adapter.getImageView().setOnClickListener(listener);
 
             }});
+    }
+
+    public List<Integer> getImagesFromPrefix(String prefix) {
+
+        List<Integer> images = new ArrayList<>();
+        int i = 1;
+        while (true) {
+            int id = getImageId(prefix, i);
+            if(id != 0) {
+                images.add(id);
+            }
+            else {
+                break;
+            }
+            i++;
+        }
+
+        return images;
 
 
 
+    }
+
+    public int getImageId(String prefix, int i) {
+        return context.getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", activity.getPackageName());
     }
 
 
