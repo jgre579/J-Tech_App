@@ -5,24 +5,66 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 
 public class DataProvider {
 
     private static ArrayList<Device> devices = new ArrayList<Device>();
 
     public static void generateDevices() {
-        ArrayList<Integer> images = new ArrayList<>(Arrays.asList(
-                R.drawable.laptop_category, R.drawable.tablet_category, R.drawable.tablet_category));
+//        ArrayList<Integer> images = new ArrayList<>(Arrays.asList(
+//                R.drawable.laptop_category, R.drawable.tablet_category, R.drawable.tablet_category));
+//
+//        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+//        map.put("Performance", "Octa core");
+//        map.put("Display", "5.8\" ");
+//        map.put("Storage", "128 GB");
+//        map.put("Camera", "12 MP + 20 MP");
+//
+//
+//        devices.add(new Phone("iPhone Test 12", images, map, 1200.00f, "link", R.drawable.tablet_category,
+// "decription", 2012));
+//
+//
+//        devices.add(new Phone("iPhone 13 Max", R.drawable.phone_category));
+//        devices.add(new Phone("iPhone 12 Mini", R.drawable.phone_category));
+//        devices.add(new Tablet("iPad Pro", R.drawable.tablet_category));
+//        devices.add(new Tablet("Galaxy Tab 3", R.drawable.tablet_category));
+//        devices.add(new Laptop("Macbook pro", R.drawable.laptop_category));
+//        devices.add(new Laptop("Lenovo Thinkpad", R.drawable.laptop_category));
 
-        devices.add(new Phone("iPhone Test 12", images));
+        devices.add(new Phone.Builder()
+                .name("iPhone 13")
+                .imageSrcs(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category ))
+                .year(2021)
+                .price(730.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("Link")
+                .brandImageSrc(R.drawable.tablet_category)
+                .build()
+        );
 
+        devices.add(new Phone.Builder()
+                .name("iPhone 13 Max")
+                .imageSrcs(new ArrayList<Integer>(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category )))
+                .year(2021)
+                .price(730.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("Link")
+                .brandImageSrc(R.drawable.tablet_category)
+                .build()
+        );
 
-        devices.add(new Phone("iPhone 13 Max", R.drawable.phone_category));
-        devices.add(new Phone("iPhone 12 Mini", R.drawable.phone_category));
-        devices.add(new Tablet("iPad Pro", R.drawable.tablet_category));
-        devices.add(new Tablet("Galaxy Tab 3", R.drawable.tablet_category));
-        devices.add(new Laptop("Macbook pro", R.drawable.laptop_category));
-        devices.add(new Laptop("Lenovo Thinkpad", R.drawable.laptop_category));
+        devices.add(new Phone.Builder()
+                .name("iPhone 13 Max")
+                .imageSrcs(new ArrayList<Integer>(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category )))
+                .year(2021)
+                .price(730.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("Link")
+                .brandImageSrc(R.drawable.tablet_category)
+                .build()
+        );
 
     }
 

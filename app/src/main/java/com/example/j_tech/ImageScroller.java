@@ -18,10 +18,11 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageScroller {
 
-    ArrayList<Integer> images;
+    List<Integer> images;
     int currentTopPickPosition;
     Context context;
     LinearLayout dotsLayout;
@@ -30,7 +31,7 @@ public class ImageScroller {
     Activity activity;
     ImageScrollerAdapter adapter;
     View.OnClickListener listener;
-    public ImageScroller(ArrayList<Integer> images, Activity activity, RecyclerView rv, View.OnClickListener listener) {
+    public ImageScroller(List<Integer> images, Activity activity, RecyclerView rv, View.OnClickListener listener) {
         this.images = images;
         this.activity = activity;
         this.context = activity.getApplicationContext();

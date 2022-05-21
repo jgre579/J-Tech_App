@@ -1,0 +1,69 @@
+package com.example.j_tech;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public abstract class DeviceBuilder {
+    protected String name;
+    protected List<Integer> imageSrcs;
+    protected Map<String, String> specs;
+    protected float price;
+    protected String moreInfoLink;
+    protected int brandImageSrc;
+    protected int description;
+    protected int year;
+    protected int imageSrc;
+
+    protected DeviceBuilder() {
+
+    }
+
+    public DeviceBuilder name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public DeviceBuilder imageSrcs(List<Integer> imageSrcs) {
+        this.imageSrcs = imageSrcs;
+        return this;
+    }
+
+    public DeviceBuilder specs(Map<String, String> specs) {
+        this.specs = specs;
+        return this;
+    }
+
+    public DeviceBuilder price(float price) {
+        this.price = price;
+        return this;
+    }
+
+    public DeviceBuilder moreInfoLink(String moreInfoLink) {
+        this.moreInfoLink = moreInfoLink;
+        return this;
+    }
+
+    public DeviceBuilder brandImageSrc(int brandImageSrc) {
+        this.brandImageSrc = brandImageSrc;
+        return this;
+    }
+
+    public DeviceBuilder description(int description) {
+        this.description = description;
+        return this;
+    }
+
+    public DeviceBuilder year(int year) {
+        this.year = year;
+        return this;
+    }
+
+    public DeviceBuilder imageSrc(int imageSrc) {
+        this.imageSrc = imageSrc;
+        return this;
+    }
+    public abstract Device build();
+
+}
+

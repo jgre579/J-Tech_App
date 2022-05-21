@@ -4,23 +4,23 @@ import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Device implements Serializable {
 
 
-
-    private ArrayList<Integer> imageSrcs;
+    private List<Integer> imageSrcs;
     private String name;
     private Map<String, String> specs;
     private float price;
     private String moreInfoLink;
     private int brandImageSrc;
-    private String description;
+    private int description;
     private int year;
     private int topPickScore;
 
-    public Device(String name, ArrayList<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, String description, int year) {
+    public Device(String name, List<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
 
         this.name = name;
         this.imageSrcs = imageSrcs;
@@ -35,27 +35,27 @@ public class Device implements Serializable {
     }
 
     //Temporary Constructor for Toppicks testing
-    public Device(String name, int imageSrc){
+    public Device(String name, int imageSrc) {
         this.name = name;
         this.imageSrcs = new ArrayList<Integer>();
         this.imageSrcs.add(imageSrc);
 
     }
 
-    public Device(String name,  ArrayList<Integer> imageSrcs) {
+    public Device(String name, ArrayList<Integer> imageSrcs) {
         this.name = name;
         this.imageSrcs = imageSrcs;
     }
 
-    public void incrementPickScore(){
-        topPickScore+=1;
+    public void incrementPickScore() {
+        topPickScore += 1;
     }
 
-    public int getTopPickScore(){
+    public int getTopPickScore() {
         return topPickScore;
     }
 
-    public ArrayList<Integer> getImageSrcs() {
+    public List<Integer> getImageSrcs() {
         return imageSrcs;
     }
 
@@ -79,11 +79,14 @@ public class Device implements Serializable {
         return brandImageSrc;
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 
     public int getYear() {
         return year;
     }
+
+
 }
+

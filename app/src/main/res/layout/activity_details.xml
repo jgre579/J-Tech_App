@@ -74,7 +74,7 @@
             android:text="$740.00"
             android:id="@+id/details_price"
             style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:padding="4dp"
+            android:paddingLeft="16dp"
 
             />
 
@@ -82,6 +82,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/details_table"
+            android:padding="16dp"
+            android:stretchColumns="*"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+
             >
 
 
@@ -91,6 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Lorem_Ipsum"
+            android:id="@+id/details_description"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:padding="16dp"
             />
@@ -108,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:text="More Info"
                     android:gravity="center"
+                    android:id="@+id/details_more_info_button"
                     android:layout_gravity="center"
                     app:cornerRadius="100dp"
                     android:textAllCaps="false"
@@ -121,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/tablet_category"
+                android:id="@+id/details_brand_image"
                 android:adjustViewBounds="true"
                 android:padding="50dp"
 
