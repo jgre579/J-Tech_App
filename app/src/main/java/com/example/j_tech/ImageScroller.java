@@ -3,6 +3,7 @@ package com.example.j_tech;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -70,7 +71,9 @@ public class ImageScroller {
 
                 currentTopPickPosition = layoutManager.findFirstVisibleItemPosition();
                 setImageDot(currentTopPickPosition);
-                adapter.getImageView().setOnClickListener(listener);
+                LinearLayout layout = (LinearLayout) layoutManager.findViewByPosition(currentTopPickPosition);
+                ImageView view = (ImageView) layout.getChildAt(0);
+                view.setOnClickListener(listener);
 
             }});
     }

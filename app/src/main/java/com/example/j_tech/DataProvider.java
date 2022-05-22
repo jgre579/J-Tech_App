@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataProvider {
 
@@ -34,6 +36,38 @@ public class DataProvider {
 //        devices.add(new Laptop("Macbook pro", R.drawable.laptop_category));
 //        devices.add(new Laptop("Lenovo Thinkpad", R.drawable.laptop_category));
 
+        devices.add(new Phone.Builder()
+                .name("iPhone 13")
+                .useImagePrefix()
+                .year(2021)
+                .price(730.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("Link")
+                .brandImageSrc(R.drawable.apple_brand_image)
+                .specs(new HashMap<String, String>() {{
+                        put("Chip", "A15 Bionic");
+                        put("Display", "6.1\"");
+                        put("OS", "iOS 15");
+                        put("Camera", "Dual 12MP + Dual 12MP");
+                }})
+                .build()
+        );
+        devices.add(new Phone.Builder()
+                .name("Galaxy S20")
+                .useImagePrefix()
+                .year(2020)
+                .price(899.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("https://www.samsung.com/nz/smartphones/galaxy-s20/")
+                .brandImageSrc(R.drawable.samsung_brand_image)
+                .specs(new HashMap<String, String>() {{
+                    put("Chip", "Exynos 990");
+                    put("Display", "6.2\"");
+                    put("OS", "Android 10 - 11");
+                    put("Camera", "Triple 10MP + 10MP");
+                }})
+                .build()
+        );
         devices.add(new Phone.Builder()
                 .name("iPhone 13")
                 .useImagePrefix()
