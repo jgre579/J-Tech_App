@@ -14,10 +14,10 @@ public class Phone extends Device{
         super(name, imageSrc);
     }
 
-    public Phone(String name, List<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
+    public Phone(String name, String imagePrefix, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
 
 
-        super(name, imageSrcs, specs, price, moreInfoLink, brandImageSrc, description, year);
+        super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year);
 
     }
 
@@ -29,7 +29,7 @@ public class Phone extends Device{
 
         @Override
         public Phone build() {
-            return new Phone(this.name, this.imageSrcs, this.specs, this.price, this.moreInfoLink, this.brandImageSrc, this.description, this.year);
+            return new Phone(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brandImageSrc, this.description, this.year);
         }
 
     }

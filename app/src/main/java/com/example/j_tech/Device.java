@@ -19,11 +19,12 @@ public class Device implements Serializable {
     private int description;
     private int year;
     private int topPickScore;
+    private String imagePrefix;
 
-    public Device(String name, List<Integer> imageSrcs, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
+    public Device(String name, String imagePrefix, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
 
         this.name = name;
-        this.imageSrcs = imageSrcs;
+        this.imagePrefix = imagePrefix;
         this.specs = specs;
         this.price = price;
         this.moreInfoLink = moreInfoLink;
@@ -86,6 +87,9 @@ public class Device implements Serializable {
     public int getYear() {
         return year;
     }
+
+    public String getImagePrefix() {return imagePrefix;}
+
 
 
 }

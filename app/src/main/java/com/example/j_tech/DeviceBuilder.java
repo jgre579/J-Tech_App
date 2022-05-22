@@ -14,6 +14,7 @@ public abstract class DeviceBuilder {
     protected int description;
     protected int year;
     protected int imageSrc;
+    protected String imagePrefix;
 
     protected DeviceBuilder() {
 
@@ -24,8 +25,9 @@ public abstract class DeviceBuilder {
         return this;
     }
 
-    public DeviceBuilder imageSrcs(List<Integer> imageSrcs) {
-        this.imageSrcs = imageSrcs;
+
+    public DeviceBuilder useImagePrefix() {
+        this.imagePrefix = this.name.toLowerCase().replaceAll("\\s","");
         return this;
     }
 
@@ -59,10 +61,6 @@ public abstract class DeviceBuilder {
         return this;
     }
 
-    public DeviceBuilder imageSrc(int imageSrc) {
-        this.imageSrc = imageSrc;
-        return this;
-    }
     public abstract Device build();
 
 }

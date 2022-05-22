@@ -93,8 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
         for (Device device : topPicks) {
             // Get first image of every top pick
-            images.add(device.getImageSrcs().get(0));
+            String prefix = device.getImagePrefix();
+            int id = getImageId(prefix, 1);
+            images.add(id);
+
         }
+
         View.OnClickListener topPickClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public int getImageId(String prefix, int i) {
+        return getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", getPackageName());
     }
 
 

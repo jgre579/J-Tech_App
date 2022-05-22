@@ -32,16 +32,17 @@ public class ImageScroller {
     ImageScrollerAdapter adapter;
     View.OnClickListener listener;
     public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+        this.context = activity.getApplicationContext();
         buildImageScroller(images, activity, rv, listener);
     }
 
     public ImageScroller(String imagePrefix,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+        this.context = activity.getApplicationContext();
         buildImageScroller(getImagesFromPrefix(imagePrefix), activity, rv, listener);
     }
 
     public void buildImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener){
         this.activity = activity;
-        this.context = activity.getApplicationContext();
         this.listener = listener;
         this.images = images;
         this.adapter = new ImageScrollerAdapter(this.images);
@@ -96,7 +97,7 @@ public class ImageScroller {
     }
 
     public int getImageId(String prefix, int i) {
-        return context.getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", activity.getPackageName());
+        return context.getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", context.getPackageName());
     }
 
 

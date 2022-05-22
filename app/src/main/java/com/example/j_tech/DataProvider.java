@@ -36,7 +36,7 @@ public class DataProvider {
 
         devices.add(new Phone.Builder()
                 .name("iPhone 13")
-                .imageSrcs(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category ))
+                .useImagePrefix()
                 .year(2021)
                 .price(730.00f)
                 .description(R.string.Lorem_Ipsum)
@@ -45,27 +45,7 @@ public class DataProvider {
                 .build()
         );
 
-        devices.add(new Phone.Builder()
-                .name("iPhone 13 Max")
-                .imageSrcs(new ArrayList<Integer>(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category )))
-                .year(2021)
-                .price(730.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("Link")
-                .brandImageSrc(R.drawable.tablet_category)
-                .build()
-        );
 
-        devices.add(new Phone.Builder()
-                .name("iPhone 13 Max")
-                .imageSrcs(new ArrayList<Integer>(Arrays.asList(R.drawable.laptop_category,R.drawable.laptop_category )))
-                .year(2021)
-                .price(730.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("Link")
-                .brandImageSrc(R.drawable.tablet_category)
-                .build()
-        );
 
     }
 
@@ -118,8 +98,14 @@ public class DataProvider {
                 return o1.getTopPickScore() - o2.getTopPickScore();
             }
         });
+        ArrayList<Device> topPicks;
+        if(devices.size() > 3) {
+            topPicks = new ArrayList<Device>(devices.subList(0,3));
+        }
+        else {
+            topPicks = devices;
+        }
 
-        ArrayList<Device> topPicks = new ArrayList<Device>(devices.subList(0,3));
         
         return topPicks;
 

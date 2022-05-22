@@ -68,8 +68,8 @@ public class DetailsActivity extends AppCompatActivity {
         device = (Device) intent.getSerializableExtra("Device");
         //ArrayList<Integer> a = new ArrayList<>(Arrays.asList(R.drawable.laptop_category, R.drawable.tablet_category, R.drawable.phone_category));
         vh.actionBar.setTitle(device.getName());
-        Toast.makeText(this, device.getImageSrcs().toString(), Toast.LENGTH_SHORT).show();
-        imageScroller = new ImageScroller(device.getImageSrcs(), this, vh.imagesRV, new View.OnClickListener() {
+
+        imageScroller = new ImageScroller(device.getImagePrefix(), this, vh.imagesRV, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
