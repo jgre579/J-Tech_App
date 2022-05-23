@@ -27,7 +27,7 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(findViewById(R.id.toolbar));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        
+
         List<Device> deviceList = DataProvider.getDevices(new Phone());
         DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
         ListView listView = (ListView) findViewById(R.id.list_view);

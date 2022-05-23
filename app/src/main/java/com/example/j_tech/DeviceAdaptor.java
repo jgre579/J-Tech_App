@@ -52,13 +52,13 @@ public class DeviceAdaptor extends ArrayAdapter {
         deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
 
         ImageView deviceImageView = (ImageView) currentListViewItem.findViewById(R.id.list_view_image);
-        int i = mContext.getResources().getIdentifier(
-                currentDevice.getImagePrefix(),"drawable",
+        int id = mContext.getResources().getIdentifier(
+                currentDevice.getImagePrefix() + "_1","drawable",
                 mContext.getPackageName()
         );
 
         //setting the image
-        deviceImageView.setImageResource(i);
+        deviceImageView.setImageResource(id);
 
 
 
