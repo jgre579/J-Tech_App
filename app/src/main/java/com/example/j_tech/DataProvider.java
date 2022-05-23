@@ -3,14 +3,12 @@ package com.example.j_tech;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DataProvider {
     public static Map<Integer,String> generateDeviceName(){
-        Map<Integer,String> name = new LinkedHashMap<Integer,String>();
+        Map<Integer,String> name = new LinkedHashMap<>();
         name.put(1,"phone1");
         name.put(2,"phone2");
         name.put(3,"phone3");
@@ -28,6 +26,7 @@ public class DataProvider {
 
 
 
+    private static ArrayList<Device> devices = new ArrayList<>();
 
 
 

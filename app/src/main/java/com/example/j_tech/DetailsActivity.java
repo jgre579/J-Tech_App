@@ -41,6 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
             setSupportActionBar(findViewById(R.id.toolbar));
             actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
+
             imagesRV = findViewById(R.id.details_rv);
             tableLayout = findViewById(R.id.details_table);
             titleTV = findViewById(R.id.details_title);
