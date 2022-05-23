@@ -7,6 +7,7 @@ import android.media.Image;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -33,6 +34,7 @@ public class ImageScroller {
     Activity activity;
     ImageScrollerAdapter adapter;
     View.OnClickListener listener;
+    RecyclerView rv;
 
     public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener, List<String> texts) {
         this.context = activity.getApplicationContext();
@@ -45,10 +47,25 @@ public class ImageScroller {
         buildImageScroller(getImagesFromPrefix(imagePrefix), activity, rv, listener);
     }
 
+    public void clearForUpdate() {
+
+        rv.setOnFlingListener(null);
+        for (ImageView dot : dots) {
+
+            ((ViewGroup) dot.getParent()).removeView(dot);
+
+        }
+
+    }
+
+
     public void buildImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener){
         this.activity = activity;
         this.listener = listener;
         this.images = images;
+        this.rv = rv;
+
+
         this.adapter = new ImageScrollerAdapter(this.images);
         adapter.setText(texts);
         rv.setAdapter(adapter);
@@ -59,11 +76,10 @@ public class ImageScroller {
         helper.attachToRecyclerView(rv);
 
         dotsLayout = activity.findViewById(R.id.image_dots_layout);
-
         dots = new ArrayList<ImageView>();
-        Log.d("device", dots.toString());
 
         initImageDots();
+
 
 
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {

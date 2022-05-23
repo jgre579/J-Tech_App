@@ -71,7 +71,7 @@ public class DeviceAdaptor extends ArrayAdapter {
         currentListViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                currentDevice.incrementPickScore();
                 Intent detailsActivity = new Intent(mContext, DetailsActivity.class);
                 detailsActivity.putExtra("Device", (Serializable) currentDevice);
                 mContext.startActivity(detailsActivity);

@@ -16,6 +16,7 @@ public abstract class DeviceBuilder {
     protected int year;
     protected int imageSrc;
     protected String imagePrefix;
+    protected int topPickScore;
 
     protected DeviceBuilder() {
         this.specs = new LinkedHashMap<>();
@@ -56,6 +57,11 @@ public abstract class DeviceBuilder {
 
     public DeviceBuilder year(int year) {
         this.year = year;
+        return this;
+    }
+
+    public DeviceBuilder topPickScore(int score) {
+        this.topPickScore = score;
         return this;
     }
 

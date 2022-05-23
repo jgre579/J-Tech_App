@@ -83,6 +83,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
+
+
     public void setDeviceDetails() {
         // Fill out device name, price, specs etc into the proper views.
         vh.titleTV.setText(device.getName());

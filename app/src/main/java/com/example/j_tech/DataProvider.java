@@ -53,6 +53,15 @@ public class DataProvider {
 
     }
 
+    public static ArrayList<Device> getAllDevices() {
+
+        if(devices != null) {
+            generateDevices();
+        }
+        return devices;
+
+    }
+
 
     public static Device getDevice(String name) {
 
@@ -69,30 +78,7 @@ public class DataProvider {
     }
 
 
-    public static ArrayList<Device> generateTopPicks() {
 
-        if(devices.isEmpty()) {
-            generateDevices();
-        }
-
-        Collections.sort(devices, new Comparator<Device>() {
-            @Override
-            public int compare(Device o1, Device o2) {
-                return o1.getTopPickScore() - o2.getTopPickScore();
-            }
-        });
-        ArrayList<Device> topPicks;
-        if(devices.size() > 3) {
-            topPicks = new ArrayList<Device>(devices.subList(0,3));
-        }
-        else {
-            topPicks = devices;
-        }
-
-        
-        return topPicks;
-
-    }
 
     public static void generateDevices() {
 

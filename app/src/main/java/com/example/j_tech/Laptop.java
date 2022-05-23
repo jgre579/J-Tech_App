@@ -8,7 +8,7 @@ public class Laptop extends Device{
     public Laptop(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
 
 
-        super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year);
+        super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year, 0);
 
     }
     @Override

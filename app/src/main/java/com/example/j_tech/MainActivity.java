@@ -19,11 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,19 +81,12 @@ public class MainActivity extends AppCompatActivity {
     ImageScroller imageScroller, two;
     ArrayList<Device> topPicks;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        vh = new MainViewHolder();
+    public void fillTopPicks() {
 
         ArrayList<Integer> images = new ArrayList<>();
         ArrayList<String> texts = new ArrayList<>();
         topPicks = new ArrayList<>();
-
-        topPicks = DataProvider.generateTopPicks();
+        topPicks = (ArrayList<Device>) TopPicks.calculateTopPicks(DataProvider.getAllDevices());
 
         for (Device device : topPicks) {
             // Get first image of every top pick
@@ -101,20 +96,37 @@ public class MainActivity extends AppCompatActivity {
             texts.add(device.getName());
 
         }
-
         View.OnClickListener topPickClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Device d = topPicks.get(imageScroller.getActiveDot());
+                d.incrementPickScore();
                 Intent detailsActivity = new Intent(getBaseContext(), DetailsActivity.class);
-                detailsActivity.putExtra("Device",  (Serializable) topPicks.get(imageScroller.getActiveDot()));
+                detailsActivity.putExtra("Device",  (Serializable) d );
                 startActivity(detailsActivity);
                 Log.d("click", "CLICKED");
             }
 
         };
+        imageScroller = new ImageScroller(images, this, vh.topPicksRV, topPickClickListener, texts);
 
-       imageScroller = new ImageScroller(images, this, vh.topPicksRV, topPickClickListener, texts);
+    }
+
+    @Override
+    protected void onResume() {
+        if(imageScroller != null) {
+            imageScroller.clearForUpdate();
+        }
+        fillTopPicks();
+        super.onResume();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        vh = new MainViewHolder();
 
 
 

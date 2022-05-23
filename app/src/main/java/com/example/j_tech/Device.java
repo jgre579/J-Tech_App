@@ -22,7 +22,7 @@ public abstract class Device implements Serializable {
     private String imagePrefix;
     private LinkedHashMap<String, String> specs;
 
-    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
+    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year, int topPickScore) {
 
         this.name = name;
         this.imagePrefix = imagePrefix;
@@ -32,26 +32,14 @@ public abstract class Device implements Serializable {
         this.description = description;
         this.year = year;
         this.specs = specs;
-        topPickScore = 0;
+        this.topPickScore = topPickScore;
 
     }
 
 
-    //Temporary Constructor for Toppicks testing
-    public Device(String name, int imageSrc) {
-        this.name = name;
-        this.imageSrcs = new ArrayList<Integer>();
-        this.imageSrcs.add(imageSrc);
-
-    }
-
-    public Device(String name, ArrayList<Integer> imageSrcs) {
-        this.name = name;
-        this.imageSrcs = imageSrcs;
-    }
 
     public void incrementPickScore() {
-        topPickScore += 1;
+        this.topPickScore++;
     }
 
     public int getTopPickScore() {
@@ -91,22 +79,6 @@ public abstract class Device implements Serializable {
     }
 
     public String getImagePrefix() {return imagePrefix;}
-
-    public Device (int topPickScore, String name, ArrayList<Integer> imageSrcs, float price
-    , LinkedHashMap<String, String> specs,String moreInfoLink, int brandImageSrc, int description
-    , int year, String imagePrefix){
-        this.topPickScore = topPickScore;
-        this.name = name;
-        this.imageSrcs = imageSrcs;
-        this.price = price;
-        this.specs = specs;
-        this.moreInfoLink = moreInfoLink;
-        this.brandImageSrc = brandImageSrc;
-        this.description = description;
-        this.year = year;
-        this.imagePrefix = imagePrefix;
-
-    }
 
     public abstract String getType();
 
