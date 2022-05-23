@@ -5,9 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -91,22 +89,8 @@ public class DetailsActivity extends AppCompatActivity {
         vh.brandIV.setImageResource(device.getBrandImageSrc());
         createTable();
 
-    }
-
-    public void moreInfoClicked(View v) {
 
 
-        Uri uri = Uri.parse(device.getMoreInfoLink());
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        try {
-            startActivity(intent);
-        }
-        catch (ActivityNotFoundException e) {
-
-            Toast.makeText(this, "Link Not Available", Toast.LENGTH_SHORT).show();
-            
-        }
-        
 
     }
 

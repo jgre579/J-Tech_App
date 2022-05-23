@@ -35,6 +35,7 @@ public class Device implements Serializable {
 
     }
 
+
     //Temporary Constructor for Toppicks testing
     public Device(String name, int imageSrc) {
         this.name = name;
@@ -89,6 +90,22 @@ public class Device implements Serializable {
     }
 
     public String getImagePrefix() {return imagePrefix;}
+
+    public Device (int topPickScore, String name, ArrayList<Integer> imageSrcs, float price
+    , Map<String, String> specs,String moreInfoLink, int brandImageSrc, int description
+    , int year, String imagePrefix){
+        this.topPickScore = topPickScore;
+        this.name = name;
+        this.imageSrcs = imageSrcs;
+        this.price = price;
+        this.specs = specs;
+        this.moreInfoLink = moreInfoLink;
+        this.brandImageSrc = brandImageSrc;
+        this.description = description;
+        this.year = year;
+        this.imagePrefix = imagePrefix;
+
+    }
 
 
 

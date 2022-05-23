@@ -1,8 +1,6 @@
 package com.example.j_tech;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,6 +9,29 @@ import java.util.List;
 import java.util.Map;
 
 public class DataProvider {
+    public static Map<Integer,String> generateDeviceName(){
+        Map<Integer,String> name = new LinkedHashMap<Integer,String>();
+        name.put(1,"phone1");
+        name.put(2,"phone2");
+        name.put(3,"phone3");
+        name.put(4,"phone4");
+        name.put(5,"phone5");
+        name.put(6,"phone6");
+        name.put(7,"phone7");
+        name.put(8,"phone8");
+        name.put(9,"phone9");
+        name.put(10,"phone10");
+        return name;
+
+    }
+
+
+
+
+
+
+
+
 
     private static ArrayList<Device> devices = new ArrayList<Device>();
 
@@ -80,7 +101,6 @@ public class DataProvider {
         );
 
 
-
     }
 
     // You can get a list of the devices by supplying an instance of the object,
@@ -96,7 +116,7 @@ public class DataProvider {
         for (Device device : devices) {
             if(device.getClass().isInstance(d)) {
 
-                sortedDevice.add(device);
+               sortedDevice.add(device);
 
             }
         }
@@ -104,6 +124,7 @@ public class DataProvider {
         return sortedDevice;
 
     }
+
 
     public static Device getDevice(String name) {
 

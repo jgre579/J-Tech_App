@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent detailsActivity = new Intent(getBaseContext(), DetailsActivity.class);
                 detailsActivity.putExtra("Device",  (Serializable) topPicks.get(imageScroller.getActiveDot()));
                 startActivity(detailsActivity);
-                Log.d("click", "CLIKED");
+                Log.d("click", "CLICKED");
             }
 
         };
@@ -117,6 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void clickCategory(View v) {
+        Intent listActivity = new Intent(getBaseContext(), ListActivity.class);
+        startActivity(listActivity);
+    }
+
 
     public int getImageId(String prefix, int i) {
         return getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", getPackageName());
@@ -124,13 +129,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void clickCategory(View view) {
+    //public void clickCategory(View view) {
 
-        vh.devicesTextView.setText(vh.getCategoryText(view));
+        //vh.devicesTextView.setText(vh.getCategoryText(view));
 
 
 
-    }
+    //}
 
 
 
