@@ -24,6 +24,7 @@ import java.util.List;
 public class ImageScroller {
 
     List<Integer> images;
+    List<String> texts;
     int currentTopPickPosition;
     Context context;
     LinearLayout dotsLayout;
@@ -32,8 +33,10 @@ public class ImageScroller {
     Activity activity;
     ImageScrollerAdapter adapter;
     View.OnClickListener listener;
-    public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+
+    public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener, List<String> texts) {
         this.context = activity.getApplicationContext();
+        this.texts = texts;
         buildImageScroller(images, activity, rv, listener);
     }
 
@@ -47,6 +50,7 @@ public class ImageScroller {
         this.listener = listener;
         this.images = images;
         this.adapter = new ImageScrollerAdapter(this.images);
+        adapter.setText(texts);
         rv.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);

@@ -49,7 +49,7 @@ public class DeviceAdaptor extends ArrayAdapter {
         deviceNameTextView.setText(currentDevice.getName());
 
         TextView deviceYearTextView = (TextView) currentListViewItem.findViewById(R.id.list_view_device_year);
-        deviceYearTextView.setText(currentDevice.getYear());
+        deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
 
         ImageView deviceImageView = (ImageView) currentListViewItem.findViewById(R.id.list_view_image);
         int i = mContext.getResources().getIdentifier(

@@ -21,10 +21,9 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        List<Device> deviceList = DataProvider.getDevices();
+        List<Device> deviceList = DataProvider.getDevices(new Phone());
         DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
-
-        ListView listView = (ListView) findViewById(androidx.appcompat.R.id.list_item);
+        ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);
     }
 }

@@ -1,13 +1,14 @@
 package com.example.j_tech;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class DeviceBuilder {
     protected String name;
     protected List<Integer> imageSrcs;
-    protected Map<String, String> specs;
+    protected LinkedHashMap<String, String> specs;
     protected float price;
     protected String moreInfoLink;
     protected int brandImageSrc;
@@ -17,8 +18,10 @@ public abstract class DeviceBuilder {
     protected String imagePrefix;
 
     protected DeviceBuilder() {
-
+        this.specs = new LinkedHashMap<>();
     }
+
+
 
     public DeviceBuilder name(String name) {
         this.name = name;
@@ -28,11 +31,6 @@ public abstract class DeviceBuilder {
 
     public DeviceBuilder useImagePrefix() {
         this.imagePrefix = this.name.toLowerCase().replaceAll("\\s","");
-        return this;
-    }
-
-    public DeviceBuilder specs(Map<String, String> specs) {
-        this.specs = specs;
         return this;
     }
 
@@ -61,7 +59,11 @@ public abstract class DeviceBuilder {
         return this;
     }
 
+
+
+
     public abstract Device build();
 
+    public abstract DeviceBuilder specs(String s, String s1, String s2, String s3);
 }
 

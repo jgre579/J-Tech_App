@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     ImageScroller imageScroller, two;
     ArrayList<Device> topPicks;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         vh = new MainViewHolder();
 
         ArrayList<Integer> images = new ArrayList<>();
+        ArrayList<String> texts = new ArrayList<>();
         topPicks = new ArrayList<>();
 
         topPicks = DataProvider.generateTopPicks();
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             String prefix = device.getImagePrefix();
             int id = getImageId(prefix, 1);
             images.add(id);
+            texts.add(device.getName());
 
         }
 
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
-       imageScroller = new ImageScroller(images, this, vh.topPicksRV, topPickClickListener);
+       imageScroller = new ImageScroller(images, this, vh.topPicksRV, topPickClickListener, texts);
 
 
 

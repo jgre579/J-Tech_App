@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +19,13 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView imageView;
+        public TextView textView;
 
         public ViewHolder(View v){
 
             super(v);
             imageView = (ImageView) v.findViewById(R.id.scroller_image);
+            textView = (TextView) v.findViewById(R.id.scroller_text);
 
         }
 
@@ -32,12 +35,16 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
     ViewHolder vh;
 
     private List<Integer> images;
+    private List<String> texts;
 
 
     public ImageScrollerAdapter(List<Integer> images){
         this.images = images;
 
+    }
 
+    public void setText(List<String> texts) {
+        this.texts = texts;
     }
 
 
@@ -63,6 +70,12 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
         //Integer pick = images.get(position);
         ImageView imageView = holder.imageView;
         imageView.setImageResource(images.get(position));
+        if (texts != null) {
+            holder.textView.setText(texts.get(position));
+        }
+        else {
+            holder.textView.setVisibility(View.GONE);
+        }
         Log.d("TAGON", String.valueOf(position));
     }
 

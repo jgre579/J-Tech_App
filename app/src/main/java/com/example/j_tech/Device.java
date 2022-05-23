@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,6 @@ public class Device implements Serializable {
 
     private List<Integer> imageSrcs;
     private String name;
-    private Map<String, String> specs;
     private float price;
     private String moreInfoLink;
     private int brandImageSrc;
@@ -20,17 +20,18 @@ public class Device implements Serializable {
     private int year;
     private int topPickScore;
     private String imagePrefix;
+    private LinkedHashMap<String, String> specs;
 
-    public Device(String name, String imagePrefix, Map<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
+    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year) {
 
         this.name = name;
         this.imagePrefix = imagePrefix;
-        this.specs = specs;
         this.price = price;
         this.moreInfoLink = moreInfoLink;
         this.brandImageSrc = brandImageSrc;
         this.description = description;
         this.year = year;
+        this.specs = specs;
         topPickScore = 0;
 
     }
@@ -92,7 +93,7 @@ public class Device implements Serializable {
     public String getImagePrefix() {return imagePrefix;}
 
     public Device (int topPickScore, String name, ArrayList<Integer> imageSrcs, float price
-    , Map<String, String> specs,String moreInfoLink, int brandImageSrc, int description
+    , LinkedHashMap<String, String> specs,String moreInfoLink, int brandImageSrc, int description
     , int year, String imagePrefix){
         this.topPickScore = topPickScore;
         this.name = name;
@@ -104,6 +105,10 @@ public class Device implements Serializable {
         this.description = description;
         this.year = year;
         this.imagePrefix = imagePrefix;
+
+    }
+
+    public Device() {
 
     }
 
