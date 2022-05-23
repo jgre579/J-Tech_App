@@ -28,6 +28,25 @@ public class DeviceAdaptor extends ArrayAdapter {
     Context mContext;
     View.OnClickListener listener;
 
+    class ViewHolder {
+
+        TextView deviceNameTextView;
+        TextView deviceYearTextView;
+        ImageView deviceImageView;
+
+        public ViewHolder(View v) {
+
+            deviceNameTextView = (TextView) v.findViewById(R.id.list_view_device_name);
+            deviceYearTextView = (TextView) v.findViewById(R.id.list_view_device_year);
+            deviceImageView = (ImageView) v.findViewById(R.id.list_view_image);
+
+        }
+
+
+
+    }
+
+
     public DeviceAdaptor(@NonNull Context context, int resource, @NonNull List<Device> objects){
         super(context,resource,objects);
         mLayoutID = resource;
@@ -35,40 +54,36 @@ public class DeviceAdaptor extends ArrayAdapter {
         mDevices = objects;
 
     }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // TODO Auto-generated method stub
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
-        //reference to the current ListView item
-        View currentListViewItem = convertView;
-
-        //if no current ListView, inflate the view
-        if (currentListViewItem == null) {
-            currentListViewItem = LayoutInflater.from(getContext()).inflate(mLayoutID, parent,false);
-
+        View v = convertView;
+        ViewHolder holder;
+        if (v == null) {
+            LayoutInflater vi = (LayoutInflater) mContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = vi.inflate(mLayoutID, null);
+            holder = new ViewHolder(v);
+            v.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) v.getTag();
         }
 
-
-        // get the Device for the current position
         Device currentDevice = mDevices.get(position);
+        holder.deviceNameTextView.setText(currentDevice.getName());
+        holder.deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
 
-        //Set the Attributed of list_view
-        TextView deviceNameTextView = (TextView) currentListViewItem.findViewById(R.id.list_view_device_name);
-        deviceNameTextView.setText(currentDevice.getName());
 
-        TextView deviceYearTextView = (TextView) currentListViewItem.findViewById(R.id.list_view_device_year);
-        deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
-
-        ImageView deviceImageView = (ImageView) currentListViewItem.findViewById(R.id.list_view_image);
         int id = mContext.getResources().getIdentifier(
                 currentDevice.getImagePrefix() + "_1","drawable",
                 mContext.getPackageName()
         );
 
         //setting the image
-        deviceImageView.setImageResource(id);
+        holder.deviceImageView.setImageResource(id);
 
-        currentListViewItem.setOnClickListener(new View.OnClickListener() {
+        v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentDevice.incrementPickScore();
@@ -77,13 +92,11 @@ public class DeviceAdaptor extends ArrayAdapter {
                 mContext.startActivity(detailsActivity);
                 Log.d("click", "CLICKED");
             }
-
         });
 
 
+        return v;
 
-
-
-        return currentListViewItem;
     }
+
 }

@@ -37,7 +37,13 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String deviceType = intent.getStringExtra("deviceType");
         actionBar.setTitle(deviceType);
+        if(deviceList != null) {
+            deviceList.clear();
+            Toast.makeText(this, String.valueOf(deviceList.size()), Toast.LENGTH_SHORT).show();
+        }
+
         deviceList = DataProvider.getDevices(deviceType);
+        Toast.makeText(this, String.valueOf(deviceList.size()), Toast.LENGTH_SHORT).show();
         DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);

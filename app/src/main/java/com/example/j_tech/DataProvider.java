@@ -1,5 +1,7 @@
 package com.example.j_tech;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,8 +38,11 @@ public class DataProvider {
     public static ArrayList<Device> getDevices(String deviceType) {
 
         if(devices.isEmpty()) {
+            devices.clear();
+            Log.d("len", String.valueOf(devices.size()));
             generateDevices();
         }
+
 
         ArrayList<Device> sortedDevice = new ArrayList<>();
 
@@ -48,6 +53,7 @@ public class DataProvider {
 
             }
         }
+        Log.d("len", String.valueOf(sortedDevice.size()));
 
         return sortedDevice;
 
@@ -55,7 +61,7 @@ public class DataProvider {
 
     public static ArrayList<Device> getAllDevices() {
 
-        if(devices != null) {
+        if(devices.isEmpty()) {
             generateDevices();
         }
         return devices;
@@ -81,9 +87,6 @@ public class DataProvider {
 
 
     public static void generateDevices() {
-
-
-
 
 
         devices.add(new Phone.Builder()
