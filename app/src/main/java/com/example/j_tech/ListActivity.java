@@ -1,5 +1,6 @@
 package com.example.j_tech;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,10 +29,16 @@ public class ListActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        List<Device> deviceList = DataProvider.getDevices(new Phone());
+        Intent intent = getIntent();
+        String deviceType = intent.getStringExtra("deviceType");
+        actionBar.setTitle(deviceType);
+        List<Device> deviceList = DataProvider.getDevices(deviceType);
         DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);
+
+
+
     }
 
     @Override

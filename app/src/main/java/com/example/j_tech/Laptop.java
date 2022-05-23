@@ -11,6 +11,10 @@ public class Laptop extends Device{
         super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year);
 
     }
+    @Override
+    public String getType() {
+        return "Laptop";
+    }
 
     public static class Builder extends DeviceBuilder {
 

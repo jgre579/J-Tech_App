@@ -122,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void clickCategory(View v) {
         Intent listActivity = new Intent(getBaseContext(), ListActivity.class);
+        MaterialCardView card = (MaterialCardView) v;
+        LinearLayout layout = (LinearLayout) card.getChildAt(0);
+        TextView textView = (TextView) layout.getChildAt(0);
+        listActivity.putExtra("deviceType", textView.getText());
         startActivity(listActivity);
     }
 

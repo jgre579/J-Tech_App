@@ -16,9 +16,9 @@ public class Phone extends Device{
         super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year);
 
     }
-    public Phone() {
-        super();
-
+    @Override
+    public String getType() {
+        return "Phone";
     }
 
     public static class Builder extends DeviceBuilder {

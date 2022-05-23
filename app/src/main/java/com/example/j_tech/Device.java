@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Device implements Serializable {
+public abstract class Device implements Serializable {
 
 
     private List<Integer> imageSrcs;
@@ -108,9 +108,8 @@ public class Device implements Serializable {
 
     }
 
-    public Device() {
+    public abstract String getType();
 
-    }
 
 
 

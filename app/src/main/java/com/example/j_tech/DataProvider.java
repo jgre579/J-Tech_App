@@ -33,7 +33,7 @@ public class DataProvider {
 
     // You can get a list of the devices by supplying an instance of the object,
     // Either Phone, Tablet, or Laptop.
-    public static ArrayList<Device> getDevices(Device d) {
+    public static ArrayList<Device> getDevices(String deviceType) {
 
         if(devices.isEmpty()) {
             generateDevices();
@@ -42,7 +42,7 @@ public class DataProvider {
         ArrayList<Device> sortedDevice = new ArrayList<>();
 
         for (Device device : devices) {
-            if(device.getClass().isInstance(d)) {
+            if(device.getType().equals(deviceType.substring(0, deviceType.length() - 1)) ) {
 
                sortedDevice.add(device);
 
@@ -122,17 +122,17 @@ public class DataProvider {
                 .specs("Android 10 - 11", "6.2\"","128GB", "Triple 12/64/12 MP + 10MP")
                 .build()
         );
-//        devices.add(new Phone.Builder()
-//                .name("Xiaomi 11T Pro")
-//                .useImagePrefix()
-//                .year(2021)
-//                .price(467.00f)
-//                .description(R.string.Lorem_Ipsum)
-//                .moreInfoLink("https://www.mi-store.co.nz/product/MZB09JJEU/11T-Pro-5G-Dual-SIM-Smartphone")
-//                .brandImageSrc(R.drawable.xiaomi_brand_image)
-//                .specs("Android 11", "6.67\"", "128/256GB", "Triple 108/8/5MP + 16MP")
-//                .build()
-//        );
+        devices.add(new Phone.Builder()
+                .name("Xiaomi 11T Pro")
+                .useImagePrefix()
+                .year(2021)
+                .price(467.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("https://www.mi-store.co.nz/product/MZB09JJEU/11T-Pro-5G-Dual-SIM-Smartphone")
+                .brandImageSrc(R.drawable.xiaomi_brand_image)
+                .specs("Android 11", "6.67\"", "128/256GB", "Triple 108/8/5MP + 16MP")
+                .build()
+        );
 
         devices.add(new Phone.Builder()
                 .name("iPhone 12")
@@ -143,6 +143,18 @@ public class DataProvider {
                 .moreInfoLink("https://www.apple.com/nz/iphone-12/")
                 .brandImageSrc(R.drawable.apple_brand_image)
                 .specs("iOS 14.1 - 15.5", "6.61\"", "64/128/256GB", "Dual 12MP + 12MP")
+                .build()
+        );
+
+        devices.add(new Tablet.Builder()
+                .name("Galaxy Tab S8")
+                .useImagePrefix()
+                .year(2020)
+                .price(500.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("https://www.apple.com/nz/iphone-12/")
+                .brandImageSrc(R.drawable.samsung_brand_image)
+                .specs("Android 12", "11.0\"", "S Pen", "128 GB")
                 .build()
         );
 

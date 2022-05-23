@@ -11,6 +11,11 @@ public class Tablet extends Device{
         super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year);
 
     }
+    @Override
+    public String getType() {
+        return "Tablet";
+    }
+
 
     public static class Builder extends DeviceBuilder {
 
@@ -24,8 +29,12 @@ public class Tablet extends Device{
         }
 
         @Override
-        public DeviceBuilder specs(String s, String s1, String s2, String s3) {
-            return null;
+        public DeviceBuilder specs(String os, String display, String pen, String Storage) {
+            specs.put("OS", os);
+            specs.put("Display", display);
+            specs.put("Native Pen", pen);
+            specs.put("Storage", Storage);
+            return this;
         }
 
     }
