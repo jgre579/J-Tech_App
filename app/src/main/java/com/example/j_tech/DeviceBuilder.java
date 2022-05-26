@@ -7,14 +7,13 @@ import java.util.Map;
 
 public abstract class DeviceBuilder {
     protected String name;
-    protected List<Integer> imageSrcs;
     protected LinkedHashMap<String, String> specs;
     protected float price;
     protected String moreInfoLink;
     protected int brandImageSrc;
     protected int description;
     protected int year;
-    protected int imageSrc;
+    protected String brand;
     protected String imagePrefix;
     protected int topPickScore;
 
@@ -45,8 +44,8 @@ public abstract class DeviceBuilder {
         return this;
     }
 
-    public DeviceBuilder brandImageSrc(int brandImageSrc) {
-        this.brandImageSrc = brandImageSrc;
+    public DeviceBuilder brand(String brand) {
+        this.brand = brand;
         return this;
     }
 

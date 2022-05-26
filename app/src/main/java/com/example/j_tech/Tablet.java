@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class Tablet extends Device{
 
-    public Tablet(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year, int topPickScore) {
+    public Tablet(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
 
 
-        super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year, topPickScore);
+        super(name, imagePrefix, specs, price, moreInfoLink, brand, description, year, topPickScore);
 
     }
     @Override
@@ -25,7 +25,7 @@ public class Tablet extends Device{
 
         @Override
         public Tablet build() {
-            return new Tablet(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brandImageSrc, this.description, this.year, this.topPickScore);
+            return new Tablet(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brand, this.description, this.year, this.topPickScore);
         }
 
         @Override
@@ -33,7 +33,7 @@ public class Tablet extends Device{
             specs.put("OS", os);
             specs.put("Display", display);
             specs.put("Native Pen", pen);
-            specs.put("Storage", Storage);
+            specs.put("Battery", Storage);
             return this;
         }
 

@@ -10,25 +10,23 @@ import java.util.Map;
 
 public abstract class Device implements Serializable {
 
-
-    private List<Integer> imageSrcs;
     private String name;
     private float price;
     private String moreInfoLink;
-    private int brandImageSrc;
+    private String brand;
     private int description;
     private int year;
     private int topPickScore;
     private String imagePrefix;
     private LinkedHashMap<String, String> specs;
 
-    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year, int topPickScore) {
+    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
 
         this.name = name;
         this.imagePrefix = imagePrefix;
         this.price = price;
         this.moreInfoLink = moreInfoLink;
-        this.brandImageSrc = brandImageSrc;
+        this.brand = brand;
         this.description = description;
         this.year = year;
         this.specs = specs;
@@ -44,10 +42,6 @@ public abstract class Device implements Serializable {
 
     public int getTopPickScore() {
         return topPickScore;
-    }
-
-    public List<Integer> getImageSrcs() {
-        return imageSrcs;
     }
 
     public String getName() {
@@ -66,8 +60,8 @@ public abstract class Device implements Serializable {
         return moreInfoLink;
     }
 
-    public int getBrandImageSrc() {
-        return brandImageSrc;
+    public String getBrand() {
+        return brand;
     }
 
     public int getDescription() {

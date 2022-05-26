@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class Phone extends Device{
 
-    public Phone(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, int brandImageSrc, int description, int year, int topPickScore) {
+    public Phone(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
 
 
-        super(name, imagePrefix, specs, price, moreInfoLink, brandImageSrc, description, year, topPickScore);
+        super(name, imagePrefix, specs, price, moreInfoLink, brand, description, year, topPickScore);
 
     }
     @Override
@@ -40,7 +40,7 @@ public class Phone extends Device{
         @Override
         public Phone build() {
 
-            return new Phone(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brandImageSrc, this.description, this.year, this.topPickScore);
+            return new Phone(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brand, this.description, this.year, this.topPickScore);
         }
 
     }

@@ -99,7 +99,10 @@ public class DeviceAdaptor extends ArrayAdapter {
         });
         if(position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.push_up);
-            animation.setDuration(1000);
+            int duration;
+            duration = 700 + position * 50;
+
+            animation.setDuration(duration);
             v.startAnimation(animation);
             animation = null;
             lastPosition = position;

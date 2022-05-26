@@ -91,9 +91,15 @@ public class DetailsActivity extends AppCompatActivity {
         vh.yearTV.setText(String.valueOf(device.getYear()));
         vh.priceTV.setText("$" + String.valueOf(device.getPrice()));
         vh.descriptionTV.setText(device.getDescription());
-        vh.brandIV.setImageResource(device.getBrandImageSrc());
+        vh.brandIV.setImageResource(getBrandImageScr(device.getBrand()));
         createTable();
 
+    }
+
+    public int getBrandImageScr(String brand) {
+
+        int id = getResources().getIdentifier(brand , "drawable", getPackageName());
+        return id;
     }
 
     public void moreInfoClicked(View v) {
