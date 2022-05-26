@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    tools:context=".SearchActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <SearchView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <include layout="@layout/app_bar" />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/deviceListSearchView"
+        android:iconifiedByDefault="false"
+        android:queryHint="Device Name" />
 
     <ListView
         android:layout_width="match_parent"
@@ -21,9 +21,8 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
         android:padding="16dp"
-        android:id="@+id/list_view"
+        android:id="@+id/list_view_search"
         tools:context=".ListActivity">
 
     </ListView>
-
 </LinearLayout>
