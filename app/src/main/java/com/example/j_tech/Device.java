@@ -26,14 +26,14 @@ public abstract class Device implements Serializable {
     private String name;
     private float price;
     private String moreInfoLink;
-    private String brand;
+    private Brand brand;
     private int description;
     private int year;
     private int topPickScore;
     private String imagePrefix;
     private LinkedHashMap<String, String> specs;
 
-    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
+    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
 
         this.name = name;
         this.imagePrefix = imagePrefix;
@@ -73,7 +73,7 @@ public abstract class Device implements Serializable {
         return moreInfoLink;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
