@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ public class DeviceAdaptor extends ArrayAdapter {
     List<Device> mDevices;
     Context mContext;
     View.OnClickListener listener;
+    int lastPosition;
 
     class ViewHolder {
 
@@ -52,6 +55,7 @@ public class DeviceAdaptor extends ArrayAdapter {
         mLayoutID = resource;
         mContext = context;
         mDevices = objects;
+        lastPosition = -1;
 
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -93,6 +97,15 @@ public class DeviceAdaptor extends ArrayAdapter {
                 Log.d("click", "CLICKED");
             }
         });
+        if(position > lastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.push_up);
+            animation.setDuration(1000);
+            v.startAnimation(animation);
+            animation = null;
+            lastPosition = position;
+
+        }
+
 
 
         return v;
