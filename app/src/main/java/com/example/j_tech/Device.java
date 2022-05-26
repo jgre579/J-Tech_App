@@ -10,6 +10,19 @@ import java.util.Map;
 
 public abstract class Device implements Serializable {
 
+    enum Brand {
+
+        APPLE,
+        GOOGLE,
+        XIAOMI,
+        SAMSUNG,
+        HUAWEI,
+        MiCROSOFT,
+        HP,
+        ASUS
+
+    }
+
     private String name;
     private float price;
     private String moreInfoLink;

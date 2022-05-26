@@ -50,6 +50,8 @@ public class ImageScroller {
     public void clearForUpdate() {
 
         rv.setOnFlingListener(null);
+        texts.clear();
+        images.clear();
         for (ImageView dot : dots) {
 
             ((ViewGroup) dot.getParent()).removeView(dot);

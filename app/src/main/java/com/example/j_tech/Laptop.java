@@ -30,8 +30,12 @@ public class Laptop extends Device{
         }
 
         @Override
-        public DeviceBuilder specs(String s, String s1, String s2, String s3) {
-            return null;
+        public DeviceBuilder specs(String processor, String size, String ram , String storage) {
+            specs.put("Processor", processor);
+            specs.put("Screen Size", size);
+            specs.put("RAM", ram);
+            specs.put("Storage", storage);
+            return this;
         }
 
     }
