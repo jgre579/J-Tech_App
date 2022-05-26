@@ -1,34 +1,26 @@
 package com.example.j_tech;
 
-import androidx.annotation.NonNull;
+import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Device implements Serializable {
 
-    enum Brand {
-
-        APPLE ,
-        GOOGLE,
-        XIAOMI,
-        SAMSUNG,
-        HUAWEI,
-
-    }
-
     private String name;
     private float price;
     private String moreInfoLink;
-    private Brand brand;
+    private String brand;
     private int description;
     private int year;
     private int topPickScore;
     private String imagePrefix;
     private LinkedHashMap<String, String> specs;
 
-    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
+    public Device(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
 
         this.name = name;
         this.imagePrefix = imagePrefix;
@@ -68,7 +60,7 @@ public abstract class Device implements Serializable {
         return moreInfoLink;
     }
 
-    public Brand getBrand() {
+    public String getBrand() {
         return brand;
     }
 

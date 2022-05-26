@@ -13,11 +13,14 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     MainViewHolder vh;
-
+    DeviceAdaptor deviceAdaptor;
     class MainViewHolder {
 
         TextView devicesTextView;
@@ -156,7 +159,27 @@ public class MainActivity extends AppCompatActivity {
 
     //}
 
+    public boolean onCreateOptionMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.top_app_bar,menu);
+        MenuItem menuItem =menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                deviceAdaptor.getFilter().filter(s.toString());
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
     public void updateTopPicks() {
 

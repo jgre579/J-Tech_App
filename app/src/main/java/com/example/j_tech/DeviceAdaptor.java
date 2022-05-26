@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +22,17 @@ import androidx.annotation.Nullable;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
-public class DeviceAdaptor extends ArrayAdapter {
+public class DeviceAdaptor extends ArrayAdapter implements Filterable {
 
 
     int mLayoutID;
     List<Device> mDevices;
+    List<Device> listFull;
     Context mContext;
     View.OnClickListener listener;
     int lastPosition;
@@ -56,6 +62,7 @@ public class DeviceAdaptor extends ArrayAdapter {
         mContext = context;
         mDevices = objects;
         lastPosition = -1;
+        listFull =  new ArrayList<>(mDevices);
 
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -114,5 +121,39 @@ public class DeviceAdaptor extends ArrayAdapter {
         return v;
 
     }
+
+    @Override
+    public Filter getFilter(){
+        return FilterDevice;
+    }
+    private Filter FilterDevice = new Filter(){
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String searchText = constraint.toString().toLowerCase(Locale.ROOT);
+            List<Device> tempList = new ArrayList<>();
+            if(searchText.length()==0 || searchText.isEmpty()){
+                tempList.addAll(listFull);
+            }
+            else{
+                for(Device device :listFull){
+                    if(device.getName().toLowerCase(Locale.ROOT).contains(searchText))
+                    {
+                        tempList.add(device);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = tempList;
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mDevices.clear();
+            mDevices.addAll((Collection<? extends Device>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }
