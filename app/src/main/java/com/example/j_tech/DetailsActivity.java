@@ -91,7 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
         vh.yearTV.setText(String.valueOf(device.getYear()));
         vh.priceTV.setText("$" + String.valueOf(device.getPrice()));
         vh.descriptionTV.setText(device.getDescription());
-        vh.brandIV.setImageResource(getBrandImageScr(device.getBrand()));
+        vh.brandIV.setImageResource(getBrandImageScr(device.getBrand().name().toLowerCase()));
         createTable();
 
     }

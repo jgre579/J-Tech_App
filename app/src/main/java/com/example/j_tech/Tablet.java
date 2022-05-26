@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Tablet extends Device{
 
-    public Tablet(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, String brand, int description, int year, int topPickScore) {
+    public Tablet(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
 
 
         super(name, imagePrefix, specs, price, moreInfoLink, brand, description, year, topPickScore);

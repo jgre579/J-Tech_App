@@ -1,9 +1,6 @@
 package com.example.j_tech;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 public abstract class DeviceBuilder {
     protected String name;
@@ -13,7 +10,7 @@ public abstract class DeviceBuilder {
     protected int brandImageSrc;
     protected int description;
     protected int year;
-    protected String brand;
+    protected Device.Brand brand;
     protected String imagePrefix;
     protected int topPickScore;
 
@@ -44,7 +41,7 @@ public abstract class DeviceBuilder {
         return this;
     }
 
-    public DeviceBuilder brand(String brand) {
+    public DeviceBuilder brand(Device.Brand brand) {
         this.brand = brand;
         return this;
     }
