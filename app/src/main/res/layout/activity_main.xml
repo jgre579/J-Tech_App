@@ -22,11 +22,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
-                app:menu="@menu/options_menu"
-                app:titleTextColor="@color/white_50a"
+
+                app:titleTextColor="@color/white"
                 android:id="@+id/main_toolbar"
 
+
                 >
+
+                <SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/search_view"
+                    android:gravity="center"
+                    android:iconifiedByDefault="false"
+                    app:theme="@style/ToolbarTheme"
+                    android:searchIcon="@drawable/search24_white"
+
+
+
+                    >
+
+                </SearchView>
             </com.google.android.material.appbar.MaterialToolbar>
 
 
