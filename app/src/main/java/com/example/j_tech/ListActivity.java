@@ -19,7 +19,6 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     List<Device> deviceList;
-    DeviceAdaptor deviceAdaptor;
     ActionBar actionBar;
 
     @Override
@@ -32,10 +31,9 @@ public class ListActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        Log.d("search123", "intent loaded");
+
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String searchQuery = intent.getStringExtra(SearchManager.QUERY);
-            Log.d("search123", "search if entered");
             searchDevices(searchQuery);
         }
         else {
@@ -50,8 +48,8 @@ public class ListActivity extends AppCompatActivity {
 
     public void searchDevices(String searchQuery) {
 
-        Log.d("search123", "List search");
-
+        Search search = new Search(searchQuery, DataProvider.getAllDevices());
+        setListAdapter(search.searchNames());
     }
 
     public void listDevices(String deviceType) {
@@ -61,12 +59,19 @@ public class ListActivity extends AppCompatActivity {
         }
 
         deviceList = DataProvider.getDevices(deviceType);
+        setListAdapter(deviceList);
 
-        DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
+
+    }
+
+    public void setListAdapter(List<Device> devices) {
+
+        DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, devices);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);
 
     }
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu){
 //        getMenuInflater().inflate(R.menu.options_menu,menu);

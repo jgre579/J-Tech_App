@@ -156,14 +156,14 @@ public class MainActivity extends AppCompatActivity {
 
         //vh.devicesTextView.setText(vh.getCategoryText(view));
 
-    public void clickSearchButton(MenuItem item) {
-        String test =  vh.searchEditText.getText().toString().toLowerCase(Locale.ROOT);
-        Log.v("menuItemTest","searchButton onClick");
-        Log.v("menuItemTest",test);
-        Intent searchActivity = new Intent(getBaseContext(), SearchActivity.class);
-        startActivity(searchActivity);
-
-    }
+//    public void clickSearchButton(MenuItem item) {
+//        String test =  vh.searchEditText.getText().toString().toLowerCase(Locale.ROOT);
+//        Log.v("menuItemTest","searchButton onClick");
+//        Log.v("menuItemTest",test);
+//        Intent searchActivity = new Intent(getBaseContext(), SearchActivity.class);
+//        startActivity(searchActivity);
+//
+//    }
 
     //}
     @Override

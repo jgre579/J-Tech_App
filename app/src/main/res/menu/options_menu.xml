@@ -8,7 +8,6 @@
         android:icon="@drawable/search24_white"
         android:title="Search"
         android:contentDescription="Content"
-        android:onClick="clickSearchButton"
         app:showAsAction="ifRoom"
         app:actionViewClass="android.widget.SearchView"/>
 
