@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
@@ -16,7 +16,9 @@
             android:id="@+id/toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
-            />
+            >
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
     </com.google.android.material.appbar.AppBarLayout>
