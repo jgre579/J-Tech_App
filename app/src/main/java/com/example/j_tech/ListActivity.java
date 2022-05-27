@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     public void searchDevices(String searchQuery) {
-
+        actionBar.setTitle("Result for"+ " "+ '"' +searchQuery +'"');
         Search search = new Search(searchQuery, DataProvider.getAllDevices());
         setListAdapter(search.searchNames());
     }
