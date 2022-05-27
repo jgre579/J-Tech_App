@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -29,24 +31,21 @@ import com.google.android.material.card.MaterialCardView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     MainViewHolder vh;
-    DeviceAdaptor deviceAdaptor;
+
     class MainViewHolder {
 
         TextView devicesTextView;
-        EditText searchEditText;
+        EditText searchEditText; // searchTextArea
+
         RecyclerView topPicksRV;
 
 
-
-
-
         public MainViewHolder(){
-
-
 
             devicesTextView = findViewById(R.id.devices_text_view);
             searchEditText = findViewById(R.id.search_text_input);
@@ -58,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         devicesTextView.setText(searchEditText.getText());
                         handled = true;
                     }
+                    String test =  vh.searchEditText.getText().toString().toLowerCase(Locale.ROOT);
+                    Log.v("menuItemTest","Keyboard searchButton onClick");
+                    Log.v("menuItemTest",test);
                     return handled;
                 }
             });
@@ -130,17 +132,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vh = new MainViewHolder();
-
-
-
+        Log.v("menuItemTest","Main Activity onCreate");
 
     }
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu){
+     //   getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        //MenuItem menuItem = menu.findItem(R.id.search);
+        //SearchView searchView = (SearchView) menuItem.getActionView();
+       // return super.onCreateOptionsMenu(menu);
+    //}
+
+    //@Override
+   // public boolean onOptionsItemSelected(MenuItem item) {
+     //   int id = item.getItemId();
+       // if (id == R.id.search){
+         //   Intent intent = new Intent(this, MainActivity.class);
+           // startActivity(intent);
+            //return true;}
+       // return super.onOptionsItemSelected(item);
+   // }
+
     public void clickCategory(View v) {
         Intent listActivity = new Intent(getBaseContext(), ListActivity.class);
         MaterialCardView card = (MaterialCardView) v;
         LinearLayout layout = (LinearLayout) card.getChildAt(0);
         TextView textView = (TextView) layout.getChildAt(0);
         listActivity.putExtra("deviceType", textView.getText());
+        Log.v("menuItemTest",textView.getText().toString());
         startActivity(listActivity);
     }
 
@@ -149,7 +168,17 @@ public class MainActivity extends AppCompatActivity {
         return getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", getPackageName());
     }
 
+    //Feature - Search
+    //EditText searchTextArea = findViewById(R.id.search_text_input);
 
+    public void clickSearchButton(MenuItem item) {
+        String test =  vh.searchEditText.getText().toString().toLowerCase(Locale.ROOT);
+        Log.v("menuItemTest","searchButton onClick");
+        Log.v("menuItemTest",test);
+        Intent searchActivity = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(searchActivity);
+
+   }
 
     //public void clickCategory(View view) {
 
@@ -159,33 +188,9 @@ public class MainActivity extends AppCompatActivity {
 
     //}
 
-    public boolean onCreateOptionMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.top_app_bar,menu);
-        MenuItem menuItem =menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                deviceAdaptor.getFilter().filter(s.toString());
-                return false;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
-    }
 
     public void updateTopPicks() {
-
-
-
-
     }
 
 

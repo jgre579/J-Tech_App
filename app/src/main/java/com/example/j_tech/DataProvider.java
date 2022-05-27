@@ -39,7 +39,6 @@ public class DataProvider {
 
         if(devices.isEmpty()) {
             devices.clear();
-            Log.d("len", String.valueOf(devices.size()));
             generateDevices();
         }
 
@@ -53,7 +52,6 @@ public class DataProvider {
 
             }
         }
-        Log.d("len", String.valueOf(sortedDevice.size()));
 
         return sortedDevice;
 
@@ -212,9 +210,21 @@ public class DataProvider {
 
 
         devices.add(new Tablet.Builder()
-                .name("Galaxy Tab S8")
+                .name("Galaxy Tab S7")
                 .useImagePrefix()
                 .year(2020)
+                .price(1249.00f)
+                .description(R.string.Lorem_Ipsum)
+                .moreInfoLink("https://www.samsung.com/nz/tablets/galaxy-tab-s/galaxy-tab-s7-mystic-navy-128gb-wi-fi-sm-t870ndbaxnz/")
+                .brand(Device.Brand.SAMSUNG)
+                .specs("Android 10 - 12", "11.0\"", "S Pen", "8000 mAh")
+                .build()
+        );
+
+        devices.add(new Tablet.Builder()
+                .name("Galaxy Tab S8")
+                .useImagePrefix()
+                .year(2022)
                 .price(1949.00f)
                 .description(R.string.Lorem_Ipsum)
                 .moreInfoLink("https://www.samsung.com/nz/tablets/galaxy-tab-s8/buy/")
@@ -267,7 +277,7 @@ public class DataProvider {
                 .description(R.string.Lorem_Ipsum)
                 .moreInfoLink("https://www.samsung.com/nz/tablets/galaxy-tab-a/galaxy-tab-a8-lte-dark-gray-64gb-sm-x205nzaexnz/?cid=nz_pd_ppc_dart-search-google_tab-a8_always-on_taba8-warmcoreterm-exact_search-extended-text-ad_none_search&utm_source=dartsearchgoogle&utm_medium=ppc&utm_campaign=taba8-warmcoreterm-exact&utm_term=w&utm_content=none&gclid=CjwKCAjwp7eUBhBeEiwAZbHwkUcSVrnRGOORxoC-EskGNO4SWL34nJiuY1kkMBLkZTaGY7VxOPp2JRoCEMMQAvD_BwE&gclsrc=aw.ds")
                 .brand(Device.Brand.SAMSUNG)
-                .specs("Android 11, One UI 3", "10.5\"", "S Pen", "7040 mAh")
+                .specs("Android 11, One UI 3", "10.5\"", "Apple Pencil (Gen 2)", "7040 mAh")
                 .build()
         );
 
@@ -318,127 +328,6 @@ public class DataProvider {
                 .specs("Android 9 - 12, One UI 4.0", "10.5\"", "S Pen", "7040 mAh")
                 .build()
         );
-
-
-        devices.add(new Laptop.Builder()
-                .name("MacBook Pro")
-                .useImagePrefix()
-                .year(2021)
-                .price(1499.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.apple.com/nz/macbook-pro-13/")
-                .brand(Device.Brand.APPLE)
-                .specs("M1 8 Core 3200 MHz", "13\"", "8 GB", "500 GB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("MacBook Air")
-                .useImagePrefix()
-                .year(2021)
-                .price(999.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.apple.com/nz/shop/buy-mac/macbook-air")
-                .brand(Device.Brand.APPLE)
-                .specs("M1 8 Core 3200 MHz", "13\"", "8 GB", "250 GB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("MateBook X Pro")
-                .useImagePrefix()
-                .year(2022)
-                .price(2994.99f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://consumer.huawei.com/en/laptops/matebook-x-pro-2022/")
-                .brand(Device.Brand.HUAWEI)
-                .specs("11th Gen Intel® Core™ i7-1195G7", "14.2\"", "16 GB", "1TB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("MateBook D15 AMD")
-                .useImagePrefix()
-                .year(2021)
-                .price(1678.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://consumer.huawei.com/nz/laptops/matebook-d-15-amd/")
-                .brand(Device.Brand.HUAWEI)
-                .specs("AMD Ryzen 5 3500U", "15.6\"", "8 GB", "256 SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("Surface Laptop Go")
-                .useImagePrefix()
-                .year(2021)
-                .price(979.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.microsoft.com/en-nz/d/surface-laptop-go/94fc0bdgq7wv?activetab=pivot:overviewtab")
-                .brand(Device.Brand.MiCROSOFT)
-                .specs("10th Gen Intel® Core™ i5 – 1035G1", "12.4\"", "4/8 GB", "128/256 SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("Surface Laptop 4")
-                .useImagePrefix()
-                .year(2021)
-                .price(1999.20f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.microsoft.com/en-nz/d/surface-laptop-4/946627fb12t1")
-                .brand(Device.Brand.MiCROSOFT)
-                .specs("AMD Ryzen 7 4980U,2.0GHz,4.4GHz", "15\"", "8 GB", "256 GB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("Victus 16")
-                .useImagePrefix()
-                .year(2021)
-                .price(1749.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.hp.com/nz-en/shop/laptops-tablets/gaming/victus-laptops/victus-by-hp-laptop-16-d0052tx-484d1pa.html")
-                .brand(Device.Brand.HP)
-                .specs("11th Generation Intel® Core™ i5", "16.1\"", "8 GB", "512 GB SSD")
-                .build()
-        );
-        devices.add(new Laptop.Builder()
-                .name("ENVY 13")
-                .useImagePrefix()
-                .year(2021)
-                .price(1049.99f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.hp.com/us-en/shop/pdp/hp-envy-laptop-13-ba1097nr")
-                .brand(Device.Brand.HP)
-                .specs("11th Generation Intel® Core™ i7", "13.3\"", "16 GB", "256 GB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("Zenbook Pro Duo 15")
-                .useImagePrefix()
-                .year(2022)
-                .price(2988.85f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.asus.com/Laptops/For-Creators/Zenbook/Zenbook-Pro-Duo-15-OLED-UX582-11th-Gen-Intel/")
-                .brand(Device.Brand.ASUS)
-                .specs("Intel® Core™ i9-11900H 2.5 GHz", "15.6\"", "16/32 GB", "1 TB SSD")
-                .build()
-        );
-
-        devices.add(new Laptop.Builder()
-                .name("Vivobook S15")
-                .useImagePrefix()
-                .year(2022)
-                .price(1962.00f)
-                .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.asus.com/nz/Laptops/For-Home/Vivobook/ASUS-Vivobook-S15-M533IA/")
-                .brand(Device.Brand.ASUS)
-                .specs("AMD Ryzen™ 5 4500U Mobile", "15.6\"", "8 GB", "512 SSD")
-                .build()
-        );
-
 
 
 
