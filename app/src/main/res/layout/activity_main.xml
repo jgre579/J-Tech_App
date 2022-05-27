@@ -8,12 +8,12 @@
     >
     <LinearLayout
 
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical">
 
 
-        <include layout="@layout/app_bar" />
+        <include layout="@layout/app_bar"></include>
 
         <TextView
             android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/top_picks_recycler_view"
             android:layout_margin="50dp"
->
+            >
 
         </androidx.recyclerview.widget.RecyclerView>
         <LinearLayout
