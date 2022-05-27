@@ -1,32 +1,26 @@
 package com.example.j_tech;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class ListActivity extends AppCompatActivity {
     List<Device> deviceList;
     DeviceAdaptor deviceAdaptor;
-
+    ActionBar actionBar;
 
     @Override
     protected void  onCreate(Bundle savedInstanceState) {
@@ -34,47 +28,67 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         setSupportActionBar(findViewById(R.id.toolbar));
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String deviceType = intent.getStringExtra("deviceType");
-        actionBar.setTitle(deviceType);
-        if(deviceList != null) {
-            deviceList.clear();
-            Toast.makeText(this, String.valueOf(deviceList.size()), Toast.LENGTH_SHORT).show();
+        Log.d("search123", "intent loaded");
+        if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String searchQuery = intent.getStringExtra(SearchManager.QUERY);
+            Log.d("search123", "search if entered");
+            searchDevices(searchQuery);
+        }
+        else {
+            String deviceType = intent.getStringExtra("deviceType");
+            listDevices(deviceType);
         }
 
-        deviceList = DataProvider.getDevices(deviceType);
-        Toast.makeText(this, String.valueOf(deviceList.size()), Toast.LENGTH_SHORT).show();
-        DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(itemsAdapter);
+
 
 
     }
 
-    //public boolean onCreateOptionMenu(Menu menu){
-      //  getMenuInflater().inflate(R.menu.top_app_bar,menu);
-        //MenuItem menuItem =menu.findItem(R.id.search);
-        //SearchView searchView = (SearchView) menuItem.getActionView();
+    public void searchDevices(String searchQuery) {
 
-        //searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+        Log.d("search123", "List search");
 
-          //  @Override
-           // public boolean onQueryTextSubmit(String query) {
-             //   return false;
-           // }
+    }
 
-            //@Override
-            //public boolean onQueryTextChange(String s) {
-                //deviceAdaptor.getFilter().filter(s.toString());
-                //return false;
-            //}
-        //});
+    public void listDevices(String deviceType) {
+        actionBar.setTitle(deviceType);
+        if(deviceList != null) {
+            deviceList.clear();
+        }
 
-       // return super.onCreateOptionsMenu(menu);
-    //}
+        deviceList = DataProvider.getDevices(deviceType);
+
+        DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, deviceList);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        listView.setAdapter(itemsAdapter);
+
+    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        getMenuInflater().inflate(R.menu.options_menu,menu);
+//        MenuItem menuItem =menu.findItem(R.id.sear);
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+//
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                deviceAdaptor.getFilter().filter(s.toString());
+//                return false;
+//            }
+//        });
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
 
 

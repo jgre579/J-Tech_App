@@ -12,8 +12,29 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <include layout="@layout/app_bar"></include>
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:menu="@menu/options_menu"
+                app:titleTextColor="@color/white_50a"
+                android:id="@+id/main_toolbar"
+
+                >
+            </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
 
         <TextView
             android:layout_width="match_parent"

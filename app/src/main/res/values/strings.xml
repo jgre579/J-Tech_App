@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">J-Tech</string>
-    <string name="Phones_text">Phones</string>"
-    <string name="Tablets_text">Tablets</string>"
-    <string name="Laptops_text">Laptops</string>"
+    <string name="Phones_text">Phones</string>
+    <string name="Tablets_text">Tablets</string>
+    <string name="Laptops_text">Laptops</string>
     <string name="Lorem_Ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula vel elit sit amet ullamcorper. Nam at mi scelerisque metus convallis fringilla. Vestibulum porta, est vel finibus scelerisque, sem odio blandit orci, eu porttitor mi purus sit amet tellus. Vestibulum semper nibh dui, a porttitor est feugiat vitae.</string>
-
+    <string name="Search_Hint">Search Devices</string>
 </resources>
