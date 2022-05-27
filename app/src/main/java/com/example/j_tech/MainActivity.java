@@ -29,11 +29,12 @@ import com.google.android.material.card.MaterialCardView;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     MainViewHolder vh;
-    DeviceAdaptor deviceAdaptor;
+    //DeviceAdaptor deviceAdaptor;
     class MainViewHolder {
 
         TextView devicesTextView;
@@ -155,31 +156,38 @@ public class MainActivity extends AppCompatActivity {
 
         //vh.devicesTextView.setText(vh.getCategoryText(view));
 
+    public void clickSearchButton(MenuItem item) {
+        String test =  vh.searchEditText.getText().toString().toLowerCase(Locale.ROOT);
+        Log.v("menuItemTest","searchButton onClick");
+        Log.v("menuItemTest",test);
+        Intent searchActivity = new Intent(getBaseContext(), SearchActivity.class);
+        startActivity(searchActivity);
 
+    }
 
     //}
 
-    public boolean onCreateOptionMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.top_app_bar,menu);
-        MenuItem menuItem =menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
+    //public boolean onCreateOptionMenu(Menu menu){
+        //getMenuInflater().inflate(R.menu.top_app_bar,menu);
+        //MenuItem menuItem =menu.findItem(R.id.search);
+        //SearchView searchView = (SearchView) menuItem.getActionView();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+        //searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
+            //@Override
+            //public boolean onQueryTextSubmit(String query) {
+                //return false;
+            //}
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                deviceAdaptor.getFilter().filter(s.toString());
-                return false;
-            }
-        });
+            //@Override
+            //public boolean onQueryTextChange(String s) {
+                //deviceAdaptor.getFilter().filter(s.toString());
+                //return false;
+            //}
+        //});
 
-        return super.onCreateOptionsMenu(menu);
-    }
+        //return super.onCreateOptionsMenu(menu);
+    //}
 
     public void updateTopPicks() {
 
