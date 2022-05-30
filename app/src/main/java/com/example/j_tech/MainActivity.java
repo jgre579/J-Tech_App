@@ -126,8 +126,12 @@ public class MainActivity extends AppCompatActivity {
         SearchView searchView =(SearchView) findViewById(R.id.search_view) ;
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
-
-
+        int searchTextId = getResources().getIdentifier("android:id/search_src_text", null, null);
+        EditText searchBox = ((EditText) searchView.findViewById(searchTextId));
+        searchBox.setBackgroundColor(getResources().getColor(R.color.blue_900));
+        int closeButtonId = getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButtonImage = (ImageView) searchView.findViewById(closeButtonId);
+        closeButtonImage.setImageResource(R.drawable.close_24);
 
     }
     public void clickCategory(View v) {

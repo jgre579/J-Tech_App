@@ -21,7 +21,7 @@ public class Search {
 
         this.query = query;
         this.devices = devices;
-        //searchNames();
+
 
     }
 

@@ -14,9 +14,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             app:menu="@menu/options_menu"
-            app:titleTextColor="@color/white_50a"
+            android:padding="0dp"
+
 
             >
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -18,18 +20,33 @@ import java.util.List;
 
 
 public class ListActivity extends AppCompatActivity {
+
+
+    class ViewHolder {
+
+
+        ActionBar actionBar;
+        LinearLayout noResultsLayout;
+
+        public ViewHolder() {
+            setSupportActionBar(findViewById(R.id.toolbar));
+            actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            noResultsLayout = findViewById(R.id.list_no_results_layout);
+        }
+
+    }
+
+    ViewHolder vh;
     List<Device> deviceList;
-    ActionBar actionBar;
+
 
     @Override
     protected void  onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        setSupportActionBar(findViewById(R.id.toolbar));
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
+        vh = new ViewHolder();
         Intent intent = getIntent();
 
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -41,19 +58,30 @@ public class ListActivity extends AppCompatActivity {
             listDevices(deviceType);
         }
 
-
-
-
     }
 
     public void searchDevices(String searchQuery) {
-        actionBar.setTitle("Result for"+ " "+ '"' +searchQuery +'"');
+        vh.actionBar.setTitle("Results for"+ " "+ '"' +searchQuery +'"');
         Search search = new Search(searchQuery, DataProvider.getAllDevices());
-        setListAdapter(search.searchNames());
+        List<Device> searchedDevices = search.searchNames();
+
+        if(searchedDevices.isEmpty()) {
+            // Display No Results
+            vh.noResultsLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            // Display found results
+            vh.noResultsLayout.setVisibility(View.GONE);
+            setListAdapter(searchedDevices);
+        }
+
+
+
     }
 
     public void listDevices(String deviceType) {
-        actionBar.setTitle(deviceType);
+        vh.noResultsLayout.setVisibility(View.GONE);
+        vh.actionBar.setTitle(deviceType);
         if(deviceList != null) {
             deviceList.clear();
         }
@@ -72,28 +100,7 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        getMenuInflater().inflate(R.menu.options_menu,menu);
-//        MenuItem menuItem =menu.findItem(R.id.sear);
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-//
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                deviceAdaptor.getFilter().filter(s.toString());
-//                return false;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
+
 
 
 
