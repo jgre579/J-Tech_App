@@ -119,19 +119,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vh = new MainViewHolder();
-        Log.d("search123", "created");
 
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =(SearchView) findViewById(R.id.search_view) ;
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
-        int searchTextId = getResources().getIdentifier("android:id/search_src_text", null, null);
-        EditText searchBox = ((EditText) searchView.findViewById(searchTextId));
-        searchBox.setBackgroundColor(getResources().getColor(R.color.blue_900));
-        int closeButtonId = getResources().getIdentifier("android:id/search_close_btn", null, null);
-        ImageView closeButtonImage = (ImageView) searchView.findViewById(closeButtonId);
-        closeButtonImage.setImageResource(R.drawable.close_24);
+        customizeSearchBar();
+
 
     }
     public void clickCategory(View v) {
@@ -148,28 +138,30 @@ public class MainActivity extends AppCompatActivity {
         return getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", getPackageName());
     }
 
+    public void customizeSearchBar() {
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.options_menu, menu);
-//
-//        // Associate searchable configuration with the SearchView
-//        SearchManager searchManager =
-//                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView =
-//                (SearchView) menu.findItem(R.id.search_menu).getActionView();
-//        searchView.setSearchableInfo(
-//                searchManager.getSearchableInfo(getComponentName()));
-//
-//        MenuItem searchItem = menu.findItem(R.id.search_menu);
-//        searchItem.setIcon(AppCompatResources.getDrawable(this, R.drawable.search24_white));
-//
-//
-//        return true;
-//
-//    }
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) findViewById(R.id.search_view) ;
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        int searchTextId = getResources().getIdentifier("android:id/search_src_text", null, null);
+        int searchButtonId = getResources().getIdentifier("android:id/search_button", null, null);
+        int search_plateId = getResources().getIdentifier("android:id/search_plate", null, null);
+
+
+        EditText searchEditText = ((EditText) searchView.findViewById(searchTextId));
+        ImageView searchButtonImage = (ImageView) searchView.findViewById(searchButtonId);
+        View search_plate = ((View) searchView.findViewById(search_plateId));
+
+        searchEditText.setBackgroundResource(R.drawable.search_bar);
+        searchEditText.setTextColor(getResources().getColor(R.color.white));
+        searchEditText.setHintTextColor(getResources().getColor(R.color.white_50a));
+
+        searchButtonImage.setImageResource(R.drawable.search24_white);
+        search_plate.setBackgroundResource(R.color.blue_900);
+
+    }
+
 
 
 

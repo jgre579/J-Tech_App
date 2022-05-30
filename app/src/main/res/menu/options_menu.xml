@@ -9,7 +9,9 @@
         android:title="Search"
         android:contentDescription="Content"
         app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView"/>
+        app:actionViewClass="android.widget.SearchView"
+
+        />
 
 
 
