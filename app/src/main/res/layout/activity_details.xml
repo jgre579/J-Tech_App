@@ -130,10 +130,10 @@
                 android:src="@drawable/tablet_category"
                 android:id="@+id/details_brand_image"
                 android:adjustViewBounds="true"
-                android:padding="50dp"
+                android:padding="20dp"
+                android:maxHeight="130dp"/>
 
 
-                />
         </LinearLayout>
 
 

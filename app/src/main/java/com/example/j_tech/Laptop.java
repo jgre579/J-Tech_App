@@ -22,8 +22,6 @@ public class Laptop extends Device{
             super();
         }
 
-
-
         @Override
         public Laptop build() {
             return new Laptop(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brand, this.description, this.year);

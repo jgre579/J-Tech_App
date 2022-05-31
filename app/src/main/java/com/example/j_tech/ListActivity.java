@@ -73,8 +73,6 @@ public class ListActivity extends AppCompatActivity {
             setListAdapter(searchedDevices);
         }
 
-
-
     }
 
     private void listDevices(String deviceType) {

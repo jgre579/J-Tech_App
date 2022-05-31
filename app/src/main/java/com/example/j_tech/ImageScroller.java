@@ -55,7 +55,6 @@ public class ImageScroller {
         for (ImageView dot : dots) {
 
             ((ViewGroup) dot.getParent()).removeView(dot);
-
         }
 
     }
