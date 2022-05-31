@@ -58,7 +58,7 @@
         android:dividerHeight="10dp"
         android:padding="16dp"
         android:id="@+id/list_view"
-        tools:context=".ListActivity">
+        tools:context=".activities.ListActivity">
 
     </ListView>
 

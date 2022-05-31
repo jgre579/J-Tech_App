@@ -1,4 +1,4 @@
-package com.example.j_tech;
+package com.example.j_tech.image_scroller;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.j_tech.R;
+
 import java.util.List;
 
 public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdapter.ViewHolder> {

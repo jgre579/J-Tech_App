@@ -1,4 +1,4 @@
-package com.example.j_tech;
+package com.example.j_tech.models;
 
 import android.graphics.drawable.Drawable;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 public abstract class Device implements Serializable {
 
-    enum Brand {
+    public enum Brand {
 
         APPLE,
         GOOGLE,

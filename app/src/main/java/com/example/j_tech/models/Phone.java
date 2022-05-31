@@ -1,14 +1,8 @@
-package com.example.j_tech;
+package com.example.j_tech.models;
 
-import android.content.Intent;
-import android.view.View;
-
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
-public class Phone extends Device{
+public class Phone extends Device {
 
     public Phone(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
 

@@ -1,12 +1,11 @@
 package com.example.j_tech;
 
-import android.util.Log;
+import com.example.j_tech.models.Device;
+import com.example.j_tech.models.Laptop;
+import com.example.j_tech.models.Phone;
+import com.example.j_tech.models.Tablet;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class DataProvider {
 

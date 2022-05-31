@@ -1,9 +1,8 @@
-package com.example.j_tech;
+package com.example.j_tech.models;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
-public class Tablet extends Device{
+public class Tablet extends Device {
 
     public Tablet(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
 

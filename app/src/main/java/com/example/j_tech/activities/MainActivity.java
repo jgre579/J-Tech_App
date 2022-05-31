@@ -1,30 +1,26 @@
-package com.example.j_tech;
+package com.example.j_tech.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.j_tech.DataProvider;
+import com.example.j_tech.models.Device;
+import com.example.j_tech.image_scroller.ImageScroller;
+import com.example.j_tech.R;
+import com.example.j_tech.utils.TopPicks;
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.Serializable;

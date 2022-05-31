@@ -1,4 +1,6 @@
-package com.example.j_tech;
+package com.example.j_tech.utils;
+
+import com.example.j_tech.models.Device;
 
 import java.util.ArrayList;
 import java.util.Collections;

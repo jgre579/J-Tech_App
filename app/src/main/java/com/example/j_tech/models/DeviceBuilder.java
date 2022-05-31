@@ -1,4 +1,4 @@
-package com.example.j_tech;
+package com.example.j_tech.models;
 
 import java.util.LinkedHashMap;
 

@@ -1,20 +1,22 @@
-package com.example.j_tech;
+package com.example.j_tech.activities;
 
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.j_tech.DataProvider;
+import com.example.j_tech.models.Device;
+import com.example.j_tech.ListAdapter;
+import com.example.j_tech.R;
+import com.example.j_tech.utils.Search;
 
 import java.util.List;
 
@@ -91,7 +93,7 @@ public class ListActivity extends AppCompatActivity {
 
     private void setListAdapter(List<Device> devices) {
 
-        DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, devices);
+        ListAdapter itemsAdapter = new ListAdapter(this, R.layout.list_view_item, devices);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);
 

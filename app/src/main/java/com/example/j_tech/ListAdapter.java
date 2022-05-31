@@ -2,7 +2,6 @@ package com.example.j_tech;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,12 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
+import com.example.j_tech.R;
+import com.example.j_tech.activities.DetailsActivity;
+import com.example.j_tech.models.Device;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-public class DeviceAdaptor extends ArrayAdapter implements Filterable {
+public class ListAdapter extends ArrayAdapter implements Filterable {
 
 
     int mLayoutID;
@@ -53,7 +52,7 @@ public class DeviceAdaptor extends ArrayAdapter implements Filterable {
 
     }
 
-    public DeviceAdaptor(@NonNull Context context, int resource, @NonNull List<Device> objects){
+    public ListAdapter(@NonNull Context context, int resource, @NonNull List<Device> objects){
         super(context,resource,objects);
         mLayoutID = resource;
         mContext = context;

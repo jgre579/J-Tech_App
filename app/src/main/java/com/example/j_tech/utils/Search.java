@@ -1,7 +1,6 @@
-package com.example.j_tech;
+package com.example.j_tech.utils;
 
-import android.os.PatternMatcher;
-import android.util.Log;
+import com.example.j_tech.models.Device;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.Pattern.*;
 
 public class Search {
     private String query;

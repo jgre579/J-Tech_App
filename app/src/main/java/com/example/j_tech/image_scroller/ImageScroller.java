@@ -1,11 +1,8 @@
-package com.example.j_tech;
+package com.example.j_tech.image_scroller;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,7 +15,8 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import java.io.Serializable;
+import com.example.j_tech.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
