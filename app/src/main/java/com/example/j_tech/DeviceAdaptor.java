@@ -51,10 +51,7 @@ public class DeviceAdaptor extends ArrayAdapter implements Filterable {
 
         }
 
-
-
     }
-
 
     public DeviceAdaptor(@NonNull Context context, int resource, @NonNull List<Device> objects){
         super(context,resource,objects);
@@ -66,24 +63,21 @@ public class DeviceAdaptor extends ArrayAdapter implements Filterable {
 
     }
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
 
-        View v = convertView;
-        ViewHolder holder;
-        if (v == null) {
-            LayoutInflater vi = (LayoutInflater) mContext
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = vi.inflate(mLayoutID, null);
-            holder = new ViewHolder(v);
-            v.setTag(holder);
+        ViewHolder vh;
+        if (convertView == null) {
+            LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = vi.inflate(mLayoutID, null);
+            vh = new ViewHolder(convertView);
+            convertView.setTag(vh);
         }
         else {
-            holder = (ViewHolder) v.getTag();
+            vh = (ViewHolder) convertView.getTag();
         }
 
         Device currentDevice = mDevices.get(position);
-        holder.deviceNameTextView.setText(currentDevice.getName());
-        holder.deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
+        vh.deviceNameTextView.setText(currentDevice.getName());
+        vh.deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
 
 
         int id = mContext.getResources().getIdentifier(
@@ -92,9 +86,9 @@ public class DeviceAdaptor extends ArrayAdapter implements Filterable {
         );
 
         //setting the image
-        holder.deviceImageView.setImageResource(id);
+        vh.deviceImageView.setImageResource(id);
 
-        v.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 currentDevice.incrementPickScore();
@@ -104,21 +98,21 @@ public class DeviceAdaptor extends ArrayAdapter implements Filterable {
                 Log.d("click", "CLICKED");
             }
         });
-        if(position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.push_up);
-            int duration;
-            duration = 700 + position * 50;
 
-            animation.setDuration(duration);
-            v.startAnimation(animation);
-            animation = null;
+        if(position > lastPosition) {
+            setAnimation(convertView, 700 + position * 50);
             lastPosition = position;
 
         }
+        return convertView;
 
+    }
 
+    private void setAnimation(View v, int duration) {
 
-        return v;
+        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.push_up);
+        animation.setDuration(duration);
+        v.startAnimation(animation);
 
     }
 

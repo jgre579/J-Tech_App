@@ -51,15 +51,11 @@ public class DetailsActivity extends AppCompatActivity {
             moreInfoButton = findViewById(R.id.details_more_info_button);
             brandIV = findViewById(R.id.details_brand_image);
 
-
         }
-
-
     }
     DetailsViewHolder vh;
     ImageScroller imageScroller;
     Device device;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,34 +65,26 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         device = (Device) intent.getSerializableExtra("Device");
-        //ArrayList<Integer> a = new ArrayList<>(Arrays.asList(R.drawable.laptop_category, R.drawable.tablet_category, R.drawable.phone_category));
         vh.actionBar.setTitle(device.getName());
-
-        imageScroller = new ImageScroller(device.getImagePrefix(), this, vh.imagesRV, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        imageScroller = new ImageScroller(device.getImagePrefix(), this, vh.imagesRV, null);
         setDeviceDetails();
-
 
     }
 
 
-
-    public void setDeviceDetails() {
+    private void setDeviceDetails() {
         // Fill out device name, price, specs etc into the proper views.
         vh.titleTV.setText(device.getName());
         vh.yearTV.setText(String.valueOf(device.getYear()));
-        vh.priceTV.setText("$" + String.valueOf(device.getPrice()));
+        String price = "$" + String.valueOf(device.getPrice());
+        vh.priceTV.setText(price);
         vh.descriptionTV.setText(device.getDescription());
         vh.brandIV.setImageResource(getBrandImageScr(device.getBrand().name().toLowerCase()));
         createTable();
 
     }
 
-    public int getBrandImageScr(String brand) {
+    private int getBrandImageScr(String brand) {
 
         int id = getResources().getIdentifier(brand , "drawable", getPackageName());
         return id;
@@ -116,7 +104,6 @@ public class DetailsActivity extends AppCompatActivity {
 
         }
 
-
     }
 
 
@@ -130,7 +117,7 @@ public class DetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createTable() {
+    private void createTable() {
 
         if(device.getSpecs() != null) {
 
@@ -139,16 +126,10 @@ public class DetailsActivity extends AppCompatActivity {
                 TableRow row = new TableRow(this);
 
                 TableRow.LayoutParams rowParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
-
-
-                //row.setLayoutParams(rowParams);
-
                 TextView key = new TextView(this);
                 TextView value = new TextView(this);
 
                 row.setPadding(5, 5, 5, 5);
-
-
 
                 key.setTextColor(getResources().getColor(R.color.off_black));
                 value.setTextColor(getResources().getColor(R.color.off_black));
@@ -159,15 +140,7 @@ public class DetailsActivity extends AppCompatActivity {
                 row.addView(value);
                 vh.tableLayout.addView(row);
 
-                Log.d("device", entry.getKey());
-
-
             }
-
         }
-
-
-
-
     }
 }

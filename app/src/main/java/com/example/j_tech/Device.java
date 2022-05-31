@@ -17,7 +17,7 @@ public abstract class Device implements Serializable {
         XIAOMI,
         SAMSUNG,
         HUAWEI,
-        MiCROSOFT,
+        MICROSOFT,
         HP,
         ASUS
 
@@ -46,8 +46,6 @@ public abstract class Device implements Serializable {
         this.topPickScore = topPickScore;
 
     }
-
-
 
     public void incrementPickScore() {
         this.topPickScore++;
@@ -88,7 +86,6 @@ public abstract class Device implements Serializable {
     public String getImagePrefix() {return imagePrefix;}
 
     public abstract String getType();
-
 
 
 

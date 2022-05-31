@@ -22,22 +22,20 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
 
-    class ViewHolder {
-
+    class ListViewHolder {
 
         ActionBar actionBar;
         LinearLayout noResultsLayout;
 
-        public ViewHolder() {
+        public ListViewHolder() {
             setSupportActionBar(findViewById(R.id.toolbar));
             actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
             noResultsLayout = findViewById(R.id.list_no_results_layout);
         }
-
     }
 
-    ViewHolder vh;
+    ListViewHolder vh;
     List<Device> deviceList;
 
 
@@ -46,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        vh = new ViewHolder();
+        vh = new ListViewHolder();
         Intent intent = getIntent();
 
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -60,8 +58,8 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    public void searchDevices(String searchQuery) {
-        vh.actionBar.setTitle("Results for"+ " "+ '"' +searchQuery +'"');
+    private void searchDevices(String searchQuery) {
+        vh.actionBar.setTitle("Results for \"" + searchQuery + "\"");
         Search search = new Search(searchQuery, DataProvider.getAllDevices());
         List<Device> searchedDevices = search.searchNames();
 
@@ -79,7 +77,8 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    public void listDevices(String deviceType) {
+    private void listDevices(String deviceType) {
+
         vh.noResultsLayout.setVisibility(View.GONE);
         vh.actionBar.setTitle(deviceType);
         if(deviceList != null) {
@@ -92,17 +91,13 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    public void setListAdapter(List<Device> devices) {
+    private void setListAdapter(List<Device> devices) {
 
         DeviceAdaptor itemsAdapter = new DeviceAdaptor(this, R.layout.list_view, devices);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(itemsAdapter);
 
     }
-
-
-
-
 
 
     @Override

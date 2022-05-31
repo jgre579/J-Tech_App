@@ -26,37 +26,85 @@ public class Search {
     }
 
     public ArrayList<Device> searchNames() {
-        HashMap<Device, Integer> map = new HashMap<>();
-        for (Device device : devices) {
+        HashMap<Object, Integer> map = new HashMap<>();
 
-            //charCounts.add();
+        for (Device device : devices) {
             map.put(device, getCharOverlap(query, device.getName()));
-            //Log.d("search123", device.getName() + " similar core: " + getCharOverlap(query, device.getName()));
             
         }
 
-        List<Map.Entry<Device, Integer>> list = new LinkedList<Map.Entry<Device, Integer>>(map.entrySet());
+        for (Device.Brand brand : Device.Brand.values()) {
+            map.put(brand, getCharOverlap(query, brand.name()));
+        }
 
-        Collections.sort(list, new Comparator<Map.Entry<Device, Integer>>() {
+        List<Map.Entry<Object, Integer>> list = new LinkedList<Map.Entry<Object, Integer>>(map.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<Object, Integer>>() {
             @Override
-            public int compare(Map.Entry<Device, Integer> o1, Map.Entry<Device, Integer> o2) {
+            public int compare(Map.Entry<Object, Integer> o1, Map.Entry<Object, Integer> o2) {
                 return (o2.getValue().compareTo(o1.getValue()));
             }
         });
         ArrayList<Device> searchedDevices = new ArrayList<>();
-        for (Map.Entry<Device, Integer> entry : list) {
+        for (Map.Entry<Object, Integer> entry : list) {
             if(entry.getValue() != 0) {
-                searchedDevices.add(entry.getKey());
+
+                if(entry.getKey() instanceof Device) {
+                    searchedDevices.add((Device) entry.getKey());
+                }
+                else if (entry.getKey() instanceof Device.Brand) {
+
+                    for (Device device : devices) {
+
+                        if(device.getBrand().equals(entry.getKey())) {
+                            searchedDevices.add(device);
+                        }
+                    }
+
+                }
+
             }
 
-            Log.d("search123", entry.getKey().getName() + " " + entry.getValue().toString());
         }
 
         return searchedDevices;
+    }
 
+    public ArrayList<Device> searchBrands() {
 
+        HashMap<Device.Brand, Integer> map = new HashMap<>();
 
+        for (Device.Brand brand : Device.Brand.values()) {
+            map.put(brand, getCharOverlap(query, brand.name()));
+        }
 
+        List<Map.Entry<Device.Brand, Integer>> list = new LinkedList<Map.Entry<Device.Brand, Integer>>(map.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<Device.Brand, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Device.Brand, Integer> o1, Map.Entry<Device.Brand, Integer> o2) {
+                return (o2.getValue().compareTo(o1.getValue()));
+            }
+        });
+        ArrayList<Device.Brand> searchedBrands = new ArrayList<>();
+        ArrayList<Device> searchedDevices = new ArrayList<>();
+        for (Map.Entry<Device.Brand, Integer> entry : list) {
+            if(entry.getValue() != 0) {
+                searchedBrands.add(entry.getKey());
+            }
+        }
+
+        for (Device.Brand brand : searchedBrands) {
+
+            for (Device device : devices) {
+
+                if(device.getBrand().equals(brand)) {
+                    searchedDevices.add(device);
+                }
+            }
+        }
+
+        return searchedDevices;
     }
     
     private int getCharOverlap(String query, String name) {
@@ -76,28 +124,6 @@ public class Search {
         }
 
         return count;
-
-
-
-
-//        String[] querySplit = query.split(" ");
-
-//        int count = 0;
-//        for (int i = 0; i < querySplit.length; i++) {
-//
-//            for (int j = 0; j < querySplit[i].length(); j++) {
-//
-//                if(querySplit[i].charAt(j) == name.charAt(j)) {
-//                    count++;
-//                }
-//
-//            }
-//
-//        }
-//
-//
-//
-//        return count;
         
         
     }

@@ -28,20 +28,16 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:title="@string/app_name"
                 app:contentInsetEndWithActions="0dp"
-                android:padding="0dp">
+                >
 
 
                 <SearchView
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:closeIcon="@drawable/close_24"
                     android:iconifiedByDefault="false"
                     android:searchIcon="@drawable/search24_white"
-
-
-
                     >
 
                 </SearchView>

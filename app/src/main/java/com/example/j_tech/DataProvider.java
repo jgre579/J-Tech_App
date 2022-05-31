@@ -9,51 +9,24 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class DataProvider {
-    public static Map<Integer,String> generateDeviceName(){
-        Map<Integer,String> name = new LinkedHashMap<>();
-        name.put(1,"phone1");
-        name.put(2,"phone2");
-        name.put(3,"phone3");
-        name.put(4,"phone4");
-        name.put(5,"phone5");
-        name.put(6,"phone6");
-        name.put(7,"phone7");
-        name.put(8,"phone8");
-        name.put(9,"phone9");
-        name.put(10,"phone10");
-        return name;
-
-    }
-
-
-
 
     private static ArrayList<Device> devices = new ArrayList<>();
 
 
-
-
-    // You can get a list of the devices by supplying an instance of the object,
-    // Either Phone, Tablet, or Laptop.
+    // You can get a list of the devices by supplying its device type string
     public static ArrayList<Device> getDevices(String deviceType) {
 
         if(devices.isEmpty()) {
-            devices.clear();
-            Log.d("len", String.valueOf(devices.size()));
             generateDevices();
         }
-
 
         ArrayList<Device> sortedDevice = new ArrayList<>();
 
         for (Device device : devices) {
             if(device.getType().equals(deviceType.substring(0, deviceType.length() - 1)) ) {
-
                sortedDevice.add(device);
-
             }
         }
-        Log.d("len", String.valueOf(sortedDevice.size()));
 
         return sortedDevice;
 
@@ -67,24 +40,6 @@ public class DataProvider {
         return devices;
 
     }
-
-
-    public static Device getDevice(String name) {
-
-        for (Device device : devices) {
-            if(device.getName().equals(name)) {
-
-                return device;
-
-            }
-        }
-
-        return null;
-
-    }
-
-
-
 
     public static void generateDevices() {
 
@@ -375,7 +330,7 @@ public class DataProvider {
                 .price(979.00f)
                 .description(R.string.Lorem_Ipsum)
                 .moreInfoLink("https://www.microsoft.com/en-nz/d/surface-laptop-go/94fc0bdgq7wv?activetab=pivot:overviewtab")
-                .brand(Device.Brand.MiCROSOFT)
+                .brand(Device.Brand.MICROSOFT)
                 .specs("10th Gen Intel® Core™ i5 – 1035G1", "12.4\"", "4/8 GB", "128/256 SSD")
                 .build()
         );
@@ -387,7 +342,7 @@ public class DataProvider {
                 .price(1999.20f)
                 .description(R.string.Lorem_Ipsum)
                 .moreInfoLink("https://www.microsoft.com/en-nz/d/surface-laptop-4/946627fb12t1")
-                .brand(Device.Brand.MiCROSOFT)
+                .brand(Device.Brand.MICROSOFT)
                 .specs("AMD Ryzen 7 4980U,2.0GHz,4.4GHz", "15\"", "8 GB", "256 GB SSD")
                 .build()
         );
@@ -438,11 +393,5 @@ public class DataProvider {
                 .specs("AMD Ryzen™ 5 4500U Mobile", "15.6\"", "8 GB", "512 SSD")
                 .build()
         );
-
-
-
-
     }
-
-
 }
