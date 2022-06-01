@@ -28,6 +28,7 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:title="@string/app_name"
                 app:contentInsetEndWithActions="0dp"
+                android:focusableInTouchMode="true"
                 >
 
 
