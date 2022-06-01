@@ -44,16 +44,17 @@ public class DataProvider {
 
 
         devices.add(new Phone.Builder()
-                .name("iPhone 13")
+                .name("iPhone 12")
                 .useImagePrefix()
-                .year(2021)
-                .price(730.00f)
+                .year(2020)
+                .price(500.00f)
                 .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.apple.com/nz/iphone-13")
+                .moreInfoLink("https://www.apple.com/nz/iphone-12/")
                 .brand(Device.Brand.APPLE)
-                .specs("iOS 15", "6.1\"", "Dual 12MP + 12MP", "128/256/512GB")
+                .specs("iOS 14.1 - 15.5", "6.61\"", "Dual 12MP + 12MP", "64/128/256GB")
                 .build()
         );
+
         devices.add(new Phone.Builder()
                 .name("Galaxy S20")
                 .useImagePrefix()
@@ -78,16 +79,18 @@ public class DataProvider {
         );
 
         devices.add(new Phone.Builder()
-                .name("iPhone 12")
+                .name("iPhone 13")
                 .useImagePrefix()
-                .year(2020)
-                .price(500.00f)
+                .year(2021)
+                .price(730.00f)
                 .description(R.string.Lorem_Ipsum)
-                .moreInfoLink("https://www.apple.com/nz/iphone-12/")
+                .moreInfoLink("https://www.apple.com/nz/iphone-13")
                 .brand(Device.Brand.APPLE)
-                .specs("iOS 14.1 - 15.5", "6.61\"", "Dual 12MP + 12MP", "64/128/256GB")
+                .specs("iOS 15", "6.1\"", "Dual 12MP + 12MP", "128/256/512GB")
                 .build()
         );
+
+
 
         devices.add(new Phone.Builder()
                 .name("Galaxy A13")

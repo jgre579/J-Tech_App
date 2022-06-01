@@ -48,13 +48,15 @@ public class Search {
             if(entry.getValue() != 0) {
 
                 if(entry.getKey() instanceof Device) {
-                    searchedDevices.add((Device) entry.getKey());
+                    if(!searchedDevices.contains(entry.getKey())) {
+                        searchedDevices.add((Device) entry.getKey());
+                    }
                 }
                 else if (entry.getKey() instanceof Device.Brand) {
 
                     for (Device device : devices) {
 
-                        if(device.getBrand().equals(entry.getKey())) {
+                        if(device.getBrand().equals(entry.getKey()) && !searchedDevices.contains(device)) {
                             searchedDevices.add(device);
                         }
                     }

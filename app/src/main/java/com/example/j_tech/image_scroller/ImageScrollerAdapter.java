@@ -77,7 +77,6 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
         else {
             holder.textView.setVisibility(View.GONE);
         }
-        Log.d("TAGON", String.valueOf(position));
     }
 
     @Override

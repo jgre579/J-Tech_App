@@ -3,6 +3,8 @@ package com.example.j_tech.activities;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Transition;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -45,7 +47,6 @@ public class ListActivity extends AppCompatActivity {
     protected void  onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
         vh = new ListViewHolder();
         Intent intent = getIntent();
 
@@ -59,6 +60,7 @@ public class ListActivity extends AppCompatActivity {
         }
 
     }
+
 
     private void searchDevices(String searchQuery) {
         vh.actionBar.setTitle("Results for \"" + searchQuery + "\"");

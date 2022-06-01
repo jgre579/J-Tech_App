@@ -52,6 +52,8 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
 
     }
 
+    private static final int MAX_ANIMATION_DURATION = 1200;
+
     public ListAdapter(@NonNull Context context, int resource, @NonNull List<Device> objects){
         super(context,resource,objects);
         mLayoutID = resource;
@@ -99,7 +101,11 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
         });
 
         if(position > lastPosition) {
-            setAnimation(convertView, 700 + position * 50);
+            int duration = 700 + position * 50;
+            if(duration > MAX_ANIMATION_DURATION) {
+                duration = MAX_ANIMATION_DURATION;
+            }
+            setAnimation(convertView, duration );
             lastPosition = position;
 
         }
