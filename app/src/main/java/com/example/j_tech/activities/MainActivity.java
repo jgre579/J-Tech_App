@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActivityOptions;
+import android.content.res.Configuration;
 import android.transition.Fade;
 import android.transition.Slide;
 
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Add on click listener to start the details activity
-        imageScroller = null;
+
         imageScroller = new ImageScroller(images, this, vh.topPicksRV, getTopPickClickListener(), texts);
 
     }
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         if(imageScroller != null) {
             imageScroller.clearForUpdate();
         }
+
         fillTopPicks();
         vh.searchEditText.clearFocus();
         super.onResume();

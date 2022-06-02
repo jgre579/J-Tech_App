@@ -65,7 +65,7 @@ public class ImageScroller {
         this.images = images;
         this.rv = rv;
 
-
+        this.adapter = null;
         this.adapter = new ImageScrollerAdapter(this.images);
         adapter.setText(texts);
         rv.setAdapter(adapter);
@@ -132,7 +132,7 @@ public class ImageScroller {
 
     public void setImageDot(int position){
         // Ensure that the dots arent being redrawn unnecessarily.
-        setDotsLayoutMargins();
+
         if(activeDot != position){
 
             clearImageDots();
