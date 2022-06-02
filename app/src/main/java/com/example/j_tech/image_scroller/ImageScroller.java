@@ -2,6 +2,7 @@ package com.example.j_tech.image_scroller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,6 +132,7 @@ public class ImageScroller {
 
     public void setImageDot(int position){
         // Ensure that the dots arent being redrawn unnecessarily.
+        setDotsLayoutMargins();
         if(activeDot != position){
 
             clearImageDots();
@@ -175,4 +177,5 @@ public class ImageScroller {
 
 
     }
+
 }

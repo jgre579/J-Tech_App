@@ -96,7 +96,7 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
                 Intent detailsActivity = new Intent(mContext, DetailsActivity.class);
                 detailsActivity.putExtra("Device", (Serializable) currentDevice);
                 mContext.startActivity(detailsActivity);
-                Log.d("click", "CLICKED");
+
             }
         });
 

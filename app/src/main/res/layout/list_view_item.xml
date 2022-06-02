@@ -49,6 +49,7 @@
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:maxHeight="80dp"
+            android:transitionName="main_image"
 
             />
     </LinearLayout>

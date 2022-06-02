@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Add on click listener to start the details activity
-
+        imageScroller = null;
         imageScroller = new ImageScroller(images, this, vh.topPicksRV, getTopPickClickListener(), texts);
 
     }
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             imageScroller.clearForUpdate();
         }
         fillTopPicks();
+        vh.searchEditText.clearFocus();
         super.onResume();
     }
 
@@ -142,12 +144,14 @@ public class MainActivity extends AppCompatActivity {
         customizeSearchBar();
 
 
+
     }
     // On click listener for the category cards
     public void clickCategory(View v) {
         Intent listActivity = new Intent(getBaseContext(), ListActivity.class);
         listActivity.putExtra("deviceType", vh.getCategoryText(v));
         startActivity(listActivity);
+
     }
 
 
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         vh.searchEditText.setPadding(40,5,5,5);
         vh.searchButtonImage.setImageResource(R.drawable.search24_white);
         vh.search_plate.setBackgroundResource(R.color.blue_900);
+
 
     }
 

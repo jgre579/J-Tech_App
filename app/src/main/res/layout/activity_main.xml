@@ -10,11 +10,21 @@
 
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        >
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
 
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -28,7 +38,7 @@
                 app:contentInsetStartWithNavigation="0dp"
                 app:title="@string/app_name"
                 app:contentInsetEndWithActions="0dp"
-                android:focusableInTouchMode="true"
+
                 >
 
 
@@ -39,6 +49,7 @@
                     android:closeIcon="@drawable/close_24"
                     android:iconifiedByDefault="false"
                     android:searchIcon="@drawable/search24_white"
+
                     >
 
                 </SearchView>
