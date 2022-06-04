@@ -3,8 +3,6 @@ package com.example.j_tech.activities;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Fade;
-import android.transition.Transition;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -50,6 +48,7 @@ public class ListActivity extends AppCompatActivity {
         vh = new ListViewHolder();
         Intent intent = getIntent();
 
+        // If this activity was started via the search view
         if(Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String searchQuery = intent.getStringExtra(SearchManager.QUERY);
             searchDevices(searchQuery);
@@ -64,8 +63,9 @@ public class ListActivity extends AppCompatActivity {
 
     private void searchDevices(String searchQuery) {
         vh.actionBar.setTitle("Results for \"" + searchQuery + "\"");
+        // Create a new search object and execute the search.
         Search search = new Search(searchQuery, DataProvider.getAllDevices());
-        List<Device> searchedDevices = search.searchNames();
+        List<Device> searchedDevices = search.searchNamesAndBrands();
 
         if(searchedDevices.isEmpty()) {
             // Display No Results
@@ -83,6 +83,7 @@ public class ListActivity extends AppCompatActivity {
 
         vh.noResultsLayout.setVisibility(View.GONE);
         vh.actionBar.setTitle(deviceType);
+
         if(deviceList != null) {
             deviceList.clear();
         }

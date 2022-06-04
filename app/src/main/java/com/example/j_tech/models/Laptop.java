@@ -4,10 +4,10 @@ import java.util.LinkedHashMap;
 
 public class Laptop extends Device {
 
-    public Laptop(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year) {
+    public Laptop(String name, String imagePrefix, LinkedHashMap<String, String> specs, float price, String moreInfoLink, Brand brand, int description, int year, int topPickScore) {
 
 
-        super(name, imagePrefix, specs, price, moreInfoLink, brand, description, year, 0);
+        super(name, imagePrefix, specs, price, moreInfoLink, brand, description, year, topPickScore);
 
     }
     @Override
@@ -23,7 +23,7 @@ public class Laptop extends Device {
 
         @Override
         public Laptop build() {
-            return new Laptop(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brand, this.description, this.year);
+            return new Laptop(this.name, this.imagePrefix, this.specs, this.price, this.moreInfoLink, this.brand, this.description, this.year, this.topPickScore);
         }
 
         @Override

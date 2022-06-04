@@ -12,12 +12,14 @@ public class DataProvider {
     private static ArrayList<Device> devices = new ArrayList<>();
 
 
-    // You can get a list of the devices by supplying its device type string
+    /**
+     * Get a list of all the devices of the specified type
+     * @param deviceType    string of device type (i.e "phone", "tablet", or "laptop)
+     * @return              list of devices from that type
+     */
     public static ArrayList<Device> getDevices(String deviceType) {
 
-        if(devices.isEmpty()) {
-            generateDevices();
-        }
+        devicesEmptyCheck();
 
         ArrayList<Device> sortedDevice = new ArrayList<>();
 
@@ -31,17 +33,30 @@ public class DataProvider {
 
     }
 
-    public static ArrayList<Device> getAllDevices() {
-
+    /**
+     * Check if the devices list is empty, if it is generate it.
+     */
+    private static void devicesEmptyCheck() {
         if(devices.isEmpty()) {
             generateDevices();
         }
+    }
+
+    /**
+     *
+     * @return list of all devices in the data provider
+     */
+    public static ArrayList<Device> getAllDevices() {
+
+        devicesEmptyCheck();
         return devices;
 
     }
 
-    public static void generateDevices() {
-
+    /**
+     * Build all devices with hardcoded data to simulate fetching from an internal data source.
+     */
+    private static void generateDevices() {
 
         devices.add(new Phone.Builder()
                 .name("iPhone 12")
@@ -162,11 +177,6 @@ public class DataProvider {
                 .specs("iOS 14.1 - 15.5", "5.4\"", "Dual 12MP + Dual 12MP", "64/256/512GB")
                 .build()
         );
-
-
-
-
-
 
         devices.add(new Tablet.Builder()
                 .name("Galaxy Tab S8")

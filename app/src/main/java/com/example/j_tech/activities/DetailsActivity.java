@@ -9,12 +9,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.transition.Fade;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -32,7 +28,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     class DetailsViewHolder{
 
-
         ActionBar actionBar;
         RecyclerView imagesRV;
         TableLayout tableLayout;
@@ -48,7 +43,6 @@ public class DetailsActivity extends AppCompatActivity {
             setSupportActionBar(findViewById(R.id.toolbar));
             actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
-
             imagesRV = findViewById(R.id.details_rv);
             tableLayout = findViewById(R.id.details_table);
             titleTV = findViewById(R.id.details_title);
@@ -73,42 +67,42 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         device = (Device) intent.getSerializableExtra("Device");
-        vh.actionBar.setTitle(device.getName());
-        imageScroller = new ImageScroller(device.getImagePrefix(), this, vh.imagesRV, null);
+
+        imageScroller = new ImageScroller(device.getImagePrefix(), this, vh.imagesRV);
         setDeviceDetails();
+        createSpecsTable();
 
     }
 
 
 
     private void setDeviceDetails() {
-        // Fill out device name, price, specs etc into the proper views.
+        // Fill out device name, price, specs etc into the proper places.
+        vh.actionBar.setTitle(device.getName());
         vh.titleTV.setText(device.getName());
         vh.yearTV.setText(String.valueOf(device.getYear()));
         String price = "$" + String.valueOf(device.getPrice());
         vh.priceTV.setText(price);
         vh.descriptionTV.setText(device.getDescription());
-        vh.brandIV.setImageResource(getBrandImageScr(device.getBrand().name().toLowerCase()));
-        createTable();
+        vh.brandIV.setImageResource(getBrandImageId(device.getBrand()));
+
 
     }
 
-    private int getBrandImageScr(String brand) {
-
-        int id = getResources().getIdentifier(brand , "drawable", getPackageName());
+    private int getBrandImageId(Device.Brand brand) {
+        int id = getResources().getIdentifier(brand.name().toLowerCase() , "drawable", getPackageName());
         return id;
     }
 
     public void moreInfoClicked(View v) {
-
-
         Uri uri = Uri.parse(device.getMoreInfoLink());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        // Use try catch to prevent app from crashing if the intent can't be actioned, e.g the url link is not valid
         try {
             startActivity(intent);
         }
         catch (ActivityNotFoundException e) {
-
+            // Display error message to user
             Toast.makeText(this, "Link Not Available", Toast.LENGTH_SHORT).show();
 
         }
@@ -126,25 +120,29 @@ public class DetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void createTable() {
+    private void createSpecsTable() {
 
         if(device.getSpecs() != null) {
 
             for (Map.Entry<String, String> entry : device.getSpecs().entrySet()) {
 
                 TableRow row = new TableRow(this);
+                row.setPadding(5, 5, 5, 5);
 
-                TableRow.LayoutParams rowParams = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
                 TextView key = new TextView(this);
                 TextView value = new TextView(this);
 
-                row.setPadding(5, 5, 5, 5);
+                /* Populate the specs table with the keys and values from the
+                devices specs hashmap. Each device could have any keys or values
+                (phones include the camera key, while laptops don't). By implementing
+                the table this way there is no hardcoding of values */
 
                 key.setTextColor(getResources().getColor(R.color.off_black));
                 value.setTextColor(getResources().getColor(R.color.off_black));
 
                 key.setText(entry.getKey());
                 value.setText(entry.getValue());
+
                 row.addView(key);
                 row.addView(value);
                 vh.tableLayout.addView(row);

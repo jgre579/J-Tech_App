@@ -16,6 +16,12 @@ import com.example.j_tech.R;
 import java.util.List;
 
 public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdapter.ViewHolder> {
+    /**
+     * Adapter class used by the recycle views in ImageScroller
+     *
+     * Was not in design doc as we did not know how to implement a recycle view until we learned more
+     * later on.
+     */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -68,9 +74,10 @@ public class ImageScrollerAdapter extends RecyclerView.Adapter<ImageScrollerAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //Integer pick = images.get(position);
         ImageView imageView = holder.imageView;
         imageView.setImageResource(images.get(position));
+
+        // If texts are used set the text other wise make the textView take up no space.
         if (texts != null) {
             holder.textView.setText(texts.get(position));
         }

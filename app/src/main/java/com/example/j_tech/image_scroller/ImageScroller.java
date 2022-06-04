@@ -22,6 +22,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageScroller {
+    /**
+     * Helper class created when we realised that both the the MainActivity and DetailsActivity both
+     * needed very similar image carousels. Instead of implementing everything twice we decided to make
+     * a class of image scroller which can be instantiated when another separate image scroller was needed.
+     *
+     * Was not present on the design doc because we did not know what we needed or how we could implement and image
+     * carousel / recycler view until we learned more later on.
+     *
+     *
+     */
 
     List<Integer> images;
     List<String> texts;
@@ -35,19 +45,23 @@ public class ImageScroller {
     View.OnClickListener listener;
     RecyclerView rv;
 
+    // Constructor used by the top picks panel, as it requires its images to given via Integers (Resource ID's) and
+    // associated texts
     public ImageScroller(List<Integer> images,Activity activity, RecyclerView rv, View.OnClickListener listener, List<String> texts) {
         this.context = activity.getApplicationContext();
         this.texts = texts;
         buildImageScroller(images, activity, rv, listener);
     }
 
-    public ImageScroller(String imagePrefix,Activity activity, RecyclerView rv, View.OnClickListener listener) {
+    // Constructor used by the details activity image scrollers which give their images via and image prefix and need
+    // no onclick listener.
+    public ImageScroller(String imagePrefix,Activity activity, RecyclerView rv) {
         this.context = activity.getApplicationContext();
-        buildImageScroller(getImagesFromPrefix(imagePrefix), activity, rv, listener);
+        buildImageScroller(getImagesFromPrefix(imagePrefix), activity, rv, null);
     }
 
     public void clearForUpdate() {
-
+        // Get ready for the image scroller to be redrawn
         rv.setOnFlingListener(null);
         texts.clear();
         images.clear();
@@ -67,11 +81,14 @@ public class ImageScroller {
 
         this.adapter = null;
         this.adapter = new ImageScrollerAdapter(this.images);
+
         adapter.setText(texts);
         rv.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(RecyclerView.HORIZONTAL);
         rv.setLayoutManager(layoutManager);
+
+        // Add snap helper so images snap into place when scrolled.
         SnapHelper helper = new LinearSnapHelper();
         helper.attachToRecyclerView(rv);
 
@@ -80,7 +97,11 @@ public class ImageScroller {
 
         initImageDots();
 
+        addScrollListener();
 
+    }
+
+    private void addScrollListener() {
 
         rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -88,17 +109,25 @@ public class ImageScroller {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) rv.getLayoutManager();
 
-
                 currentTopPickPosition = layoutManager.findFirstVisibleItemPosition();
+                // Change the image dot to reflect the new position
                 setImageDot(currentTopPickPosition);
                 LinearLayout layout = (LinearLayout) layoutManager.findViewByPosition(currentTopPickPosition);
                 ImageView view = (ImageView) layout.getChildAt(0);
+                // Set the on click listener of the new view.
                 view.setOnClickListener(listener);
 
             }});
+
+
     }
 
-    public List<Integer> getImagesFromPrefix(String prefix) {
+
+    private List<Integer> getImagesFromPrefix(String prefix) {
+        // Use an image prefix to generate a list of Resource ID's following the device images naming convention
+        // Image prefixes should all be lowercase and contain no spaces.
+        // e.g iphone13_1 for the first image of iPhone 13, the image prefix would be iphone13
+        // e.g pocof4gt_3 for the third image of Poco F4 GT
 
         List<Integer> images = new ArrayList<>();
         int i = 1;
@@ -115,8 +144,6 @@ public class ImageScroller {
 
         return images;
 
-
-
     }
 
     public int getImageId(String prefix, int i) {
@@ -128,11 +155,9 @@ public class ImageScroller {
         return activeDot;
     }
 
-
-
     public void setImageDot(int position){
-        // Ensure that the dots arent being redrawn unnecessarily.
 
+        // Ensure that the dots arent being redrawn unnecessarily.
         if(activeDot != position){
 
             clearImageDots();
@@ -167,6 +192,8 @@ public class ImageScroller {
 
     public void setDotsLayoutMargins(){
 
+        // Use the current screen width to set the dots margin to ensure, its resize responsive,
+        // margins are used to that the dots arent evenly spread across the screen which look terrible.
         DisplayMetrics displayMetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;

@@ -20,6 +20,7 @@ public class Phone extends Device {
 
             super();
         }
+
         @Override
         public DeviceBuilder specs(String os, String display, String camera, String storage) {
             specs.put("OS", os);

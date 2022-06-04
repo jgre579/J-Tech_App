@@ -26,14 +26,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-public class ListAdapter extends ArrayAdapter implements Filterable {
-
+public class ListAdapter extends ArrayAdapter {
+    /**
+     * Adapter class used by the list view in ListActivity
+     *
+     * Was not in design doc as we did not know how to implement a list view until we learned more
+     * later on.
+     */
 
     int mLayoutID;
     List<Device> mDevices;
-    List<Device> listFull;
     Context mContext;
-    View.OnClickListener listener;
     int lastPosition;
 
     class ViewHolder {
@@ -54,21 +57,22 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
 
     private static final int MAX_ANIMATION_DURATION = 1200;
 
+
     public ListAdapter(@NonNull Context context, int resource, @NonNull List<Device> objects){
         super(context,resource,objects);
         mLayoutID = resource;
         mContext = context;
         mDevices = objects;
         lastPosition = -1;
-        listFull =  new ArrayList<>(mDevices);
 
     }
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder vh;
+        // If the view in the list does not exist create it and a a view holder for it.
         if (convertView == null) {
-            LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = vi.inflate(mLayoutID, null);
+            LayoutInflater inflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflator.inflate(mLayoutID, null);
             vh = new ViewHolder(convertView);
             convertView.setTag(vh);
         }
@@ -77,10 +81,11 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
         }
 
         Device currentDevice = mDevices.get(position);
+        // Set view to the right texts for the current device.
         vh.deviceNameTextView.setText(currentDevice.getName());
         vh.deviceYearTextView.setText(String.valueOf(currentDevice.getYear()));
 
-
+        // Get the idea of the current devices first image, to show in the list view item.
         int id = mContext.getResources().getIdentifier(
                 currentDevice.getImagePrefix() + "_1","drawable",
                 mContext.getPackageName()
@@ -92,13 +97,21 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Increment the pick score so we know which devices are the most popular
                 currentDevice.incrementPickScore();
+
+                // Start the details activity and pass in a Device object so the DataProvider
+                // does not need to be queried again.
                 Intent detailsActivity = new Intent(mContext, DetailsActivity.class);
                 detailsActivity.putExtra("Device", (Serializable) currentDevice);
                 mContext.startActivity(detailsActivity);
 
             }
         });
+
+        // Run the animations, staggered based on the current views position.
+        // Check against a max duration so view off the screen don't take too long to animate in
+        // when the screen is scrolled.
 
         if(position > lastPosition) {
             int duration = 700 + position * 50;
@@ -110,7 +123,6 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
 
         }
         return convertView;
-
     }
 
     private void setAnimation(View v, int duration) {
@@ -120,39 +132,4 @@ public class ListAdapter extends ArrayAdapter implements Filterable {
         v.startAnimation(animation);
 
     }
-
-    @Override
-    public Filter getFilter(){
-        return FilterDevice;
-    }
-    private Filter FilterDevice = new Filter(){
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            String searchText = constraint.toString().toLowerCase(Locale.ROOT);
-            List<Device> tempList = new ArrayList<>();
-            if(searchText.length()==0 || searchText.isEmpty()){
-                tempList.addAll(listFull);
-            }
-            else{
-                for(Device device :listFull){
-                    if(device.getName().toLowerCase(Locale.ROOT).contains(searchText))
-                    {
-                        tempList.add(device);
-                    }
-                }
-            }
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = tempList;
-
-            return filterResults;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            mDevices.clear();
-            mDevices.addAll((Collection<? extends Device>) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
 }

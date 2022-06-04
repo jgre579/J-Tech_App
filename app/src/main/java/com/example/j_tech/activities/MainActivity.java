@@ -82,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
     ImageScroller imageScroller;
     ArrayList<Device> topPicks;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        vh = new MainViewHolder();
+        customizeSearchBar();
+    }
+
+    @Override
+    protected void onResume() {
+        if(imageScroller != null) {
+            imageScroller.clearForUpdate();
+        }
+
+        fillTopPicks();
+        vh.searchEditText.clearFocus();
+        super.onResume();
+    }
+
     private void fillTopPicks() {
 
         ArrayList<Integer> images = new ArrayList<>();
@@ -90,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         topPicks = (ArrayList<Device>) TopPicks.calculateTopPicks(DataProvider.getAllDevices());
 
         for (Device device : topPicks) {
-            // Get first image of every top pick
+            // Get first image of every top picked device
             String prefix = device.getImagePrefix();
             int id = getImageId(prefix, 1);
             images.add(id);
@@ -98,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Add on click listener to start the details activity
-
         imageScroller = new ImageScroller(images, this, vh.topPicksRV, getTopPickClickListener(), texts);
 
     }
@@ -126,28 +145,7 @@ public class MainActivity extends AppCompatActivity {
         return getResources().getIdentifier(prefix + "_" + String.valueOf(i), "drawable", getPackageName());
     }
 
-    @Override
-    protected void onResume() {
-        if(imageScroller != null) {
-            imageScroller.clearForUpdate();
-        }
 
-        fillTopPicks();
-        vh.searchEditText.clearFocus();
-        super.onResume();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        vh = new MainViewHolder();
-        customizeSearchBar();
-
-
-
-    }
     // On click listener for the category cards
     public void clickCategory(View v) {
         Intent listActivity = new Intent(getBaseContext(), ListActivity.class);
@@ -158,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void customizeSearchBar() {
-
+        // Custom search view components programmatically as its components can't be customised via XML
         vh.searchEditText.setBackgroundResource(R.drawable.search_bar);
         vh.searchEditText.setTextColor(getResources().getColor(R.color.white));
         vh.searchEditText.setHintTextColor(getResources().getColor(R.color.white_50a));
